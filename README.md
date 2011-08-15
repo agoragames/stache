@@ -8,15 +8,15 @@ A Rails 3.x (yes, even Rails *3.1*) compatible Mustache Template Handler, with s
 
 Install the gem. If you want to override any of the configuration options (see `stache/config`), toss an initializer in `config/initializers` and:
 
-    ```ruby
-    Stache.config do |c|
-      c.template_base_path = "..."  # this is probably the one you'll want to change
-                                    # it defaults to app/templates
-    end
+```ruby
+Stache.config do |c|
+  c.template_base_path = "..."  # this is probably the one you'll want to change
+                                # it defaults to app/templates
+end
     
-    # or if the block style ain't yer thang, just:
-    Stache.template_base_path = File.join(Rails.root, "app", "şablon")
-    ```
+# or if the block style ain't yer thang, just:
+Stache.template_base_path = File.join(Rails.root, "app", "şablon")
+```
 
 There is as of right now one provided helper, `template_include_tag`. Give it the name of a partial and it will write it raw to a script block. On the todo list is the ability to customize this helper a little more :).
 

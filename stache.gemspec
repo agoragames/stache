@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.description = %Q{A rails 3.x compatible template handler, configurable.}
   s.extra_rdoc_files = [
     'LICENSE',
-    'README.rdoc',
+    'README.md',
   ]
 
   s.required_rubygems_version = Gem::Requirement.new('>= 1.3.7')

@@ -8,9 +8,9 @@ Gem::Specification.new do |s|
   s.date = '2011-08-12'
   s.authors = ['Matt Wilson']
   s.email = 'mhw@hypomodern.com'
-  s.homepage = 'http://github.com/hypomodern/stache'
-  s.summary = %Q{Configurable}
-  s.description = %Q{TODO: detailed description of your gem}
+  s.homepage = 'http://github.com/agoragames/stache'
+  s.summary = %Q{Configurable Mustache Handler and Helpers for Rails}
+  s.description = %Q{A rails 3.x compatible template handler, configurable.}
   s.extra_rdoc_files = [
     'LICENSE',
     'README.rdoc',
@@ -24,8 +24,12 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ['lib']
+  
+  s.add_dependency 'mustache'
+  s.add_dependency 'rails', '~>3.1.0.rc4'
 
   s.add_development_dependency 'rspec'
+  s.add_development_dependency 'rspec-rails'
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'bueller'
   s.add_development_dependency 'rake'

@@ -7,8 +7,22 @@ rescue Bundler::BundlerError => e
   exit e.status_code
 end
 
-require 'rspec'
+require 'action_view'
+require 'mustache'
+
+module ActionView
+  class Template
+    module Foo
+    end
+  end
+  class TemplateFoo
+  end
+end
+
 require 'stache'
+ENV["RAILS_ENV"] ||= 'test'
+require 'dummy/config/environment'
+require 'rspec/rails'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.

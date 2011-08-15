@@ -1,0 +1,213 @@
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 15ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 15ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 17ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 13ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 14ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 15ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 16ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 14ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 14ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 14ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 15ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 18ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 14ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 39ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 36ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 39ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 41ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 37ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 43ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 35ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 36ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 40ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 39ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 38ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 37ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 38ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 37ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 41ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 37ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 38ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 38ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 38ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 37ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 40ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 37ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 38ms
+  Processing by StacheController#index as HTML
+Completed 500 Internal Server Error in 36ms
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (10.2ms)
+Completed 200 OK in 40ms (Views: 40.1ms)
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (8.8ms)
+Completed 200 OK in 42ms (Views: 41.7ms)
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (9.3ms)
+Completed 200 OK in 43ms (Views: 42.5ms)
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (10.0ms)
+Completed 200 OK in 41ms (Views: 40.3ms)
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (9.9ms)
+Completed 200 OK in 45ms (Views: 45.1ms)
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (13.3ms)
+Completed 200 OK in 50ms (Views: 49.9ms)
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (9.2ms)
+Completed 200 OK in 41ms (Views: 41.1ms)
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (9.4ms)
+Completed 200 OK in 44ms (Views: 43.5ms)
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (8.5ms)
+Completed 200 OK in 45ms (Views: 44.5ms)
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (10.0ms)
+Completed 200 OK in 42ms (Views: 41.6ms)
+  Processing by StacheController#with_partials as HTML
+Completed 500 Internal Server Error in 22ms
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (9.7ms)
+Completed 200 OK in 41ms (Views: 40.8ms)
+  Processing by StacheController#with_partials as HTML
+Completed 500 Internal Server Error in 22ms
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (9.6ms)
+Completed 200 OK in 43ms (Views: 42.3ms)
+  Processing by StacheController#with_partials as HTML
+LOADING PARTIAL: /Users/mhw/Dropbox/Projects/agora/stache/spec/dummy/app/templates/shared/_eaten_by_a.html.mustache
+Completed 500 Internal Server Error in 24ms
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (9.6ms)
+Completed 200 OK in 44ms (Views: 43.6ms)
+  Processing by StacheController#with_partials as HTML
+LOADING PARTIAL: /Users/mhw/Dropbox/Projects/agora/stache/spec/dummy/app/templates/shared/_eaten_by_a.html.mustache
+Completed 500 Internal Server Error in 28ms
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (8.7ms)
+Completed 200 OK in 42ms (Views: 41.4ms)
+  Processing by StacheController#with_partials as HTML
+LOADING PARTIAL: /Users/mhw/Dropbox/Projects/agora/stache/spec/dummy/app/templates/shared/_eaten_by_a.html.mustache
+Completed 500 Internal Server Error in 22ms
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (9.3ms)
+Completed 200 OK in 42ms (Views: 41.7ms)
+  Processing by StacheController#with_partials as HTML
+LOADING PARTIAL: /Users/mhw/Dropbox/Projects/agora/stache/spec/dummy/app/templates/shared/_eaten_by_a.html.mustache
+Completed 500 Internal Server Error in 24ms
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (10.6ms)
+Completed 200 OK in 45ms (Views: 44.8ms)
+  Processing by StacheController#with_partials as HTML
+Completed 500 Internal Server Error in 25ms
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (15.0ms)
+Completed 200 OK in 53ms (Views: 52.1ms)
+  Processing by StacheController#with_partials as HTML
+LOADING PARTIAL: /Users/mhw/Dropbox/Projects/agora/stache/spec/dummy/app/templates/shared/_eaten_by_a.html.mustache
+Completed 500 Internal Server Error in 26ms
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (9.4ms)
+Completed 200 OK in 44ms (Views: 44.0ms)
+  Processing by StacheController#with_partials as HTML
+LOADING PARTIAL: /Users/mhw/Dropbox/Projects/agora/stache/spec/dummy/app/templates/shared/_eaten_by_a.html.mustache
+Completed 500 Internal Server Error in 23ms
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (8.6ms)
+Completed 200 OK in 41ms (Views: 40.7ms)
+  Processing by StacheController#with_partials as HTML
+LOADING PARTIAL: /Users/mhw/Dropbox/Projects/agora/stache/spec/dummy/app/templates/shared/_eaten_by_a.html.mustache
+Completed 500 Internal Server Error in 24ms
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (9.6ms)
+Completed 200 OK in 42ms (Views: 41.3ms)
+  Processing by StacheController#with_partials as HTML
+LOADING PARTIAL: /Users/mhw/Dropbox/Projects/agora/stache/spec/dummy/app/templates/shared/_eaten_by_a.html.mustache
+Completed 500 Internal Server Error in 23ms
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (8.3ms)
+Completed 200 OK in 39ms (Views: 38.5ms)
+  Processing by StacheController#with_partials as HTML
+LOADING PARTIAL: /Users/mhw/Dropbox/Projects/agora/stache/spec/dummy/app/views/stache/_eaten_by_a.html.mustache
+Completed 200 OK in 13ms (Views: 12.4ms)
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (9.8ms)
+Completed 200 OK in 42ms (Views: 41.2ms)
+  Processing by StacheController#with_partials as HTML
+LOADING PARTIAL: /Users/mhw/Dropbox/Projects/agora/stache/spec/dummy/app/views/stache/_eaten_by_a.html.mustache
+Completed 200 OK in 14ms (Views: 13.8ms)
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (10.2ms)
+Completed 200 OK in 40ms (Views: 40.0ms)
+  Processing by StacheController#with_partials as HTML
+LOADING PARTIAL: /Users/mhw/Dropbox/Projects/agora/stache/spec/dummy/app/views/stache/_eaten_by_a.html.mustache
+Completed 200 OK in 11ms (Views: 10.5ms)
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (8.7ms)
+Completed 200 OK in 42ms (Views: 41.3ms)
+  Processing by StacheController#with_partials as HTML
+LOADING PARTIAL: /Users/mhw/Dropbox/Projects/agora/stache/spec/dummy/app/views/stache/_eaten_by_a.html.mustache
+Completed 200 OK in 12ms (Views: 11.2ms)
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (11.6ms)
+Completed 200 OK in 50ms (Views: 49.8ms)
+  Processing by StacheController#with_partials as HTML
+Completed 200 OK in 14ms (Views: 13.4ms)
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (9.7ms)
+Completed 200 OK in 47ms (Views: 47.0ms)
+  Processing by StacheController#with_partials as HTML
+Completed 200 OK in 14ms (Views: 13.9ms)
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (14.3ms)
+Completed 200 OK in 51ms (Views: 50.8ms)
+  Processing by StacheController#with_partials as HTML
+Completed 200 OK in 13ms (Views: 12.5ms)
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (11.5ms)
+Completed 200 OK in 54ms (Views: 53.8ms)
+  Processing by StacheController#with_partials as HTML
+Completed 200 OK in 14ms (Views: 13.9ms)
+  Processing by StacheController#index as HTML
+Rendered stache/index.html.mustache within layouts/application (14.1ms)
+Completed 200 OK in 77ms (Views: 76.8ms)
+  Processing by StacheController#with_partials as HTML
+Completed 200 OK in 16ms (Views: 15.8ms)

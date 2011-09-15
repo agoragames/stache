@@ -7,7 +7,7 @@ describe Stache::Handler do
   # end
   before do
     @template = ActionView::Template.new("{{body}}", "hello mustache", Stache::Handler, { :virtual_path => "hello_world"})
-    @handler = Stache::Handler.new(@template)
+    @handler = Stache::Handler.new
   end
 
   describe "#mustache_class_from_template" do

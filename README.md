@@ -50,6 +50,10 @@ This project builds on work done by the following people and projects:
 
 So: thanks a ton to those guys.
 
+## Contributors
+
+* [afeld](https://github.com/afeld) provided 1.8.7 compatibility fixes.
+
 ## Note on Patches/Pull Requests
  
 * Fork the project.

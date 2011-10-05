@@ -19,6 +19,10 @@ module Stache
     def template_base_path
       @template_base_path ||= ::Rails.root.join('app', 'templates')
     end
+    
+    def template_base_path= path
+      @template_base_path = Pathname.new(path)
+    end
 
     def template_extension
       @template_extension ||= 'html.mustache'

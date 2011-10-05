@@ -29,7 +29,7 @@ describe "Stache::Config" do
       Stache.configure do |config|
         config.template_base_path = "/dev/null"
       end
-      Stache.template_base_path.should == "/dev/null"
+      Stache.template_base_path.should == Pathname.new("/dev/null")
     end
   end
   

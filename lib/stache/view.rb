@@ -1,3 +1,5 @@
+require 'mustache'
+
 module Stache
   #
   # A Convienent Base Class for the views. Subclass this for autoloading magic with your templates.

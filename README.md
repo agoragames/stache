@@ -9,7 +9,7 @@ A Rails 3.x (yes, even Rails *3.1*) compatible Mustache Template Handler, with s
 Install the gem. If you want to override any of the configuration options (see `stache/config`), toss an initializer in `config/initializers` and:
 
 ```ruby
-Stache.config do |c|
+Stache.configure do |c|
   c.template_base_path = "..."  # this is probably the one you'll want to change
                                 # it defaults to app/templates
 end

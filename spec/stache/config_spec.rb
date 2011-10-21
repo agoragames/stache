@@ -30,6 +30,9 @@ describe "Stache::Config" do
         config.template_base_path = "/dev/null"
       end
       Stache.template_base_path.should == Pathname.new("/dev/null")
+      Stache.configure do |config|
+        config.template_base_path = ::Rails.root.join('app', 'views')
+      end
     end
   end
   

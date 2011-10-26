@@ -4,6 +4,10 @@ require "stache/util"
 require "stache/handler"
 require "stache/asset_helper"
 
+if defined? ::Rails::Railtie and ::Rails::VERSION::MAJOR >= 3
+  require 'stache/railtie'
+end
+
 module Stache
   extend Config
   

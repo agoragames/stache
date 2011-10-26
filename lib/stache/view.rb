@@ -6,7 +6,7 @@ module Stache
   #
   # e.g. if the handler is loading a template from templates/
   class View < ::Mustache
-    attr_accessor :view, :template
+    attr_accessor :view, :template, :virtual_path
 
     def method_missing(method, *args, &block)
       view.send(method, *args, &block)
@@ -23,8 +23,9 @@ module Stache
     #
     def partial(name)
       partial_name = "_#{name}.#{Stache.template_extension}"
-      template_dir = Pathname.new(self.class.template_file).dirname
+      template_dir = self.virtual_path.split("/")[0..-2].join("/")
       partial_path = File.expand_path(File.join(Stache.template_base_path, template_dir, partial_name))
+      # ::Rails.logger.info "Checking for #{partial_path} in template_dir: #{template_dir}"
       unless File.file?(partial_path)
         partial_path = "#{Stache.shared_path}/#{partial_name}"
       end

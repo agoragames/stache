@@ -20,6 +20,7 @@ module Stache
         mustache = ::#{mustache_class}.new
         mustache.view = self
         mustache.template = '#{template.source.gsub(/'/, "\\\\'")}'
+        mustache.virtual_path = '#{template.virtual_path.to_s}'
         mustache[:yield] = content_for(:layout)
         mustache.context.update(local_assigns)
         variables = controller.instance_variable_names
@@ -53,7 +54,7 @@ module Stache
       const_name = ActiveSupport::Inflector.camelize(template.virtual_path.to_s)
       begin
         const_name.constantize
-      rescue NameError
+      rescue NameError, LoadError
         Stache::View
       end
     end

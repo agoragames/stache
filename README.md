@@ -28,7 +28,33 @@ Needless to say, it's probably better if your custom View objects are subclasses
 
 An example by way of explanation:
 
-With a template `app/templates/profiles/index`, Stache will look for a view named `Profiles::Index`, and, if not found, will just use the base `Stache::View`.
+With a template `app/templates/profiles/index`, Stache will look for a view named `Profiles::Index`, and, if not found, will just use the base `Stache::View`. Stache adds `app/views` to Rails' autoload paths, so here's a sample directory structure and some sample files:
+
+```
+app/
+  templates/
+    profiles/
+      index.html.mustache
+  views/
+    profiles/
+      index.rb
+```
+
+```ruby
+# in profiles/index.rb
+module Profiles
+  class Index < ::Stache::View
+    def my_view_helper_method
+      "whoo"
+    end
+  end
+end
+```
+
+```html
+<!-- in the view, then -->
+<p>Here's a helper_method call: {{ my_view_helper_method }}</p>
+```
 
 ## Of Note
 

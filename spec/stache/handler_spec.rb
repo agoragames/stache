@@ -26,16 +26,15 @@ describe Stache::Handler do
       @handler.mustache_class_from_template(@template).should == Stache::View
     end
     it "reraises error if loaded mustache_class raises a NameError" do
-      # Emulate autoload behavior so the error gets raised upon const_get
-      module ::Foo; end
-      module Profiles; class Index < Stache::View; include Foo; end; end
-      Object.send(:remove_const, :Foo)
       @template.stub!(:virtual_path).and_return("profiles/index")
-      
+      module Profiles; end
+      # Emulate autoload behavior so the error gets raised upon const_get
+      Profiles.autoload :Index, File.join(File.dirname(__FILE__), "profile_autoload.rb")
+
       lambda {
         @handler.mustache_class_from_template(@template)
-      }.should raise_error(NameError, "uninitialized constant ::Foo")
-      
+      }.should raise_error(NameError, "uninitialized constant Profiles::Index::Foo")
+
       Object.send(:remove_const, :Profiles)
     end
   end

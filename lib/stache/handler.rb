@@ -54,8 +54,13 @@ module Stache
       const_name = ActiveSupport::Inflector.camelize(template.virtual_path.to_s)
       begin
         const_name.constantize
-      rescue NameError, LoadError
-        Stache::View
+      rescue NameError, LoadError => e
+        # Only rescue NameError/LoadError concerning our mustache_class
+        if e.message.include?(const_name)
+          Stache::View
+        else
+          raise e
+        end
       end
     end
 

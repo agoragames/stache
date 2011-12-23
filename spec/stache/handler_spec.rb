@@ -25,5 +25,18 @@ describe Stache::Handler do
     it "retuns Stache::View if it can't find none" do
       @handler.mustache_class_from_template(@template).should == Stache::View
     end
+    it "reraises error if loaded mustache_class raises a NameError" do
+      # Emulate autoload behavior so the error gets raised upon const_get
+      module ::Foo; end
+      module Profiles; class Index < Stache::View; include Foo; end; end
+      Object.send(:remove_const, :Foo)
+      @template.stub!(:virtual_path).and_return("profiles/index")
+      
+      lambda {
+        @handler.mustache_class_from_template(@template)
+      }.should raise_error(NameError, "uninitialized constant ::Foo")
+      
+      Object.send(:remove_const, :Profiles)
+    end
   end
 end

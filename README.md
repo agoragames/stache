@@ -13,7 +13,7 @@ Stache.configure do |c|
   c.template_base_path = "..."  # this is probably the one you'll want to change
                                 # it defaults to app/templates
 end
-    
+
 # or if the block style ain't yer thang, just:
 Stache.template_base_path = File.join(Rails.root, "app", "şablon")
 ```
@@ -79,9 +79,10 @@ So: thanks a ton to those guys.
 ## Contributors
 
 * [afeld](https://github.com/afeld) provided 1.8.7 compatibility fixes.
+* [subwindow](https://github.com/subwindow) provided some much needed love for Stache::View exception handling.
 
 ## Note on Patches/Pull Requests
- 
+
 * Fork the project.
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a

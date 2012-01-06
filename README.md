@@ -80,6 +80,7 @@ So: thanks a ton to those guys.
 
 * [afeld](https://github.com/afeld) provided 1.8.7 compatibility fixes.
 * [subwindow](https://github.com/subwindow) provided some much needed love for Stache::View exception handling.
+* [solotimes](https://github.com/solotimes) provided better support for non-standard encodings.
 
 ## Note on Patches/Pull Requests
 

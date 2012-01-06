@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.name = 'stache'
   s.version = Stache::VERSION
   s.platform = Gem::Platform::RUBY
-  s.date = '2011-08-12'
+  s.date = '2012-01-06'
   s.authors = ['Matt Wilson']
   s.email = 'mhw@hypomodern.com'
   s.homepage = 'http://github.com/agoragames/stache'
@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ['lib']
-  
+
   s.add_dependency 'mustache'
 
   s.add_development_dependency 'rails', '~>3.1.0'

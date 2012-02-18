@@ -13,7 +13,7 @@ module Stache
     def compile(template)
       #
       # get a custom Mustache, or the default Stache::View
-      template = Haml::Engine.new(template).render
+      template.source = Haml::Engine.new(template.source).render
       mustache_class = mustache_class_from_template(template)
 
       # Return a string that will be eval'd in the context of the ActionView, ugly, but it works.

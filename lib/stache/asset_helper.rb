@@ -14,7 +14,7 @@ module Stache
           template = ::File.open(template_path, "rb" , :encoding => Rails.configuration.encoding)
           content_tag(:script, template.read.html_safe, :type => "text/html", :id => "#{file.dasherize.underscore}_template")
         else
-          raise ActionView::MissingTemplate.new(potential_paths(base_path, file), file, [base_path], false, { :handlers => [:mustache] })
+          raise ActionView::MissingTemplate.new(potential_paths(base_path, file), file, [base_path], false, { :handlers => [:mustache, :mustache_haml] })
         end
       end.join("\n").html_safe
     end
@@ -24,7 +24,11 @@ module Stache
         path.join("_#{candidate_file_name}.html.mustache"),
         path.join("_#{candidate_file_name}.mustache"),
         path.join("#{candidate_file_name}.html.mustache"),
-        path.join("#{candidate_file_name}.mustache")
+        path.join("#{candidate_file_name}.mustache"),
+        path.join("_#{candidate_file_name}.html.mustache_haml"),
+        path.join("_#{candidate_file_name}.mustache_haml"),
+        path.join("#{candidate_file_name}.html.mustache_haml"),
+        path.join("#{candidate_file_name}.mustache_haml")
       ]
     end
     

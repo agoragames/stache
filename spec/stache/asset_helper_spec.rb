@@ -42,6 +42,18 @@ describe Stache::AssetHelper do
 
       helper.locate_template_for(Pathname.new("/tmp/whee"), "whooo").should == Pathname.new("/tmp/whee/whooo.mustache")
     end
+    it "finds mustache_haml file extensions" do
+      File.should_receive(:file?).with("/tmp/whee/_whaaa.html.mustache")
+      File.should_receive(:file?).with("/tmp/whee/_whaaa.mustache")
+      File.should_receive(:file?).with("/tmp/whee/whaaa.html.mustache")
+      File.should_receive(:file?).with("/tmp/whee/whaaa.mustache")
+      File.should_receive(:file?).with("/tmp/whee/_whaaa.html.mustache_haml")
+      File.should_receive(:file?).with("/tmp/whee/_whaaa.mustache_haml")
+      File.should_receive(:file?).with("/tmp/whee/whaaa.html.mustache_haml")
+      File.should_receive(:file?).with("/tmp/whee/whaaa.mustache_haml").and_return(true)
+
+      helper.locate_template_for(Pathname.new("/tmp/whee"), "whaaa").should == Pathname.new("/tmp/whee/whaaa.mustache_haml")
+    end
     it "returns nil if it cannot find anything" do
       helper.locate_template_for(Pathname.new("/tmp/whee"), "whooo").should be_nil
     end

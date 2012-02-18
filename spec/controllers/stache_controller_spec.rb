@@ -19,5 +19,17 @@ describe StacheController do
     # puts response.body
   end
   
+  it "correctly renders HAML templates" do
+    get :with_haml
+    assert_response 200
+    
+    response.body.should =~ /Hello, Matt!/
+  end
   
+  it "correctly renders HAML partials" do
+    get :index
+    assert_response 200
+    
+    response.body.should =~ /Hello, Matt!/
+  end
 end

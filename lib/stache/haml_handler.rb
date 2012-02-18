@@ -1,4 +1,6 @@
 require 'stache/view'
+require 'stache/haml_view'
+require 'haml'
 
 module Stache
   # From HAML, thanks a bunch, guys!
@@ -13,14 +15,14 @@ module Stache
     def compile(template)
       #
       # get a custom Mustache, or the default Stache::View
-      template.source = Haml::Engine.new(template.source).render
+      template_source = ::Haml::Engine.new(template.source).render
       mustache_class = mustache_class_from_template(template)
 
       # Return a string that will be eval'd in the context of the ActionView, ugly, but it works.
       <<-MUSTACHE
         mustache = ::#{mustache_class}.new
         mustache.view = self
-        mustache.template = '#{template.source.gsub(/'/, "\\\\'")}'
+        mustache.template = '#{template_source.gsub(/'/, "\\\\'")}'
         mustache.virtual_path = '#{template.virtual_path.to_s}'
         mustache[:yield] = content_for(:layout)
         mustache.context.update(local_assigns)
@@ -58,7 +60,7 @@ module Stache
       rescue NameError, LoadError => e
         # Only rescue NameError/LoadError concerning our mustache_class
         if e.message.match(/#{const_name}$/)
-          Stache::View
+          Stache::HamlView
         else
           raise e
         end

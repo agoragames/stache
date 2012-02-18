@@ -24,7 +24,11 @@ module Stache
         path.join("_#{candidate_file_name}.html.mustache"),
         path.join("_#{candidate_file_name}.mustache"),
         path.join("#{candidate_file_name}.html.mustache"),
-        path.join("#{candidate_file_name}.mustache")
+        path.join("#{candidate_file_name}.mustache"),
+        path.join("_#{candidate_file_name}.html.mustache.haml"),
+        path.join("_#{candidate_file_name}.mustache.haml"),
+        path.join("#{candidate_file_name}.html.mustache.haml"),
+        path.join("#{candidate_file_name}.mustache.haml")
       ]
     end
     

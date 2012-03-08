@@ -21,10 +21,8 @@ module Stache
     
     def potential_paths(path, candidate_file_name)
       [
-        path.join("_#{candidate_file_name}.html.mustache"),
-        path.join("_#{candidate_file_name}.mustache"),
-        path.join("#{candidate_file_name}.html.mustache"),
-        path.join("#{candidate_file_name}.mustache")
+        path.join("_#{candidate_file_name}.#{Stache.template_extension}"),
+        path.join("#{candidate_file_name}.#{Stache.template_extension}")
       ]
     end
     

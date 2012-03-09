@@ -2,6 +2,8 @@
 
 A Rails 3.x compatible Mustache Template Handler, with support for partials and a couple extra niceties to make sharing the raw templates with client-side javascript a little easier.
 
+[![Build Status](https://secure.travis-ci.org/agoragames/stache.png)](http://travis-ci.org/agoragames/stache)
+
 ## Usage
 
     gem "stache"

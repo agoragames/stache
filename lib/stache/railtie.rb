@@ -5,7 +5,7 @@ module Stache
     end
 
     config.to_prepare do
-      ApplicationController.send(:append_view_path, 'app/templates')
+      ApplicationController.send(:append_view_path, Stache.template_base_path)
     end
   end
 end

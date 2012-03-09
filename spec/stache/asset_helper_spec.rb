@@ -43,6 +43,7 @@ describe Stache::AssetHelper do
 
     it "tries permutations of partial names and configured file extension to find the requested file" do
       Stache.configure do |config|
+        @current_extension = config.template_extension
         config.template_extension = 'mustache'
       end
 
@@ -52,7 +53,7 @@ describe Stache::AssetHelper do
       helper.locate_template_for(Pathname.new("/tmp/whee"), "whooo").should == Pathname.new("/tmp/whee/whooo.mustache")
 
       Stache.configure do |config|
-        config.template_extension = 'html.mustache'
+        config.template_extension = @current_extension
       end
     end
 

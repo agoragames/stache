@@ -1,3 +1,7 @@
+# 0.2.2
+
+* Saner, consistent handling of template extensions: partials and full templates both use configured value at `Stache.template_extension`. Thanks @ajacksified!
+
 # 0.2.1
 
 * Addresses #9: fix 'incompatible character encodings' error

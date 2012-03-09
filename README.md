@@ -1,6 +1,6 @@
 # stache
 
-A Rails 3.x (yes, even Rails *3.1*) compatible Mustache Template Handler, with support for partials and a couple extra niceties to make sharing the raw templates with client-side javascript a little easier.
+A Rails 3.x compatible Mustache Template Handler, with support for partials and a couple extra niceties to make sharing the raw templates with client-side javascript a little easier.
 
 ## Usage
 
@@ -58,7 +58,7 @@ end
 
 ## Of Note
 
-This is early code, ripped out from an upcoming project. It probably has some rough edges.
+This is code that was ripped out of a research project. It probably has some rough edges.
 
 TODO:
 
@@ -81,6 +81,7 @@ So: thanks a ton to those guys.
 * [afeld](https://github.com/afeld) provided 1.8.7 compatibility fixes.
 * [subwindow](https://github.com/subwindow) provided some much needed love for Stache::View exception handling.
 * [solotimes](https://github.com/solotimes) provided better support for non-standard encodings.
+* [ajacksified](https://github.com/ajacksified) cleaned up template extension handling.
 
 ## Note on Patches/Pull Requests
 

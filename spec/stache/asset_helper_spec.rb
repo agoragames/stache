@@ -29,19 +29,34 @@ describe Stache::AssetHelper do
       helper.template_include_tag("whooo").should == "<script id=\"whooo_template\" type=\"text/html\">{{ awyeah }}</script>"
     end
     it "raises if it cannot find the template" do
-      -> { helper.template_include_tag("arrrgh") }.should raise_error(ActionView::MissingTemplate)
+      lambda { helper.template_include_tag("arrrgh") }.should raise_error(ActionView::MissingTemplate)
     end
   end
 
   describe "#locate_template_for" do
-    it "tries permutations of partial names and file extensions to find the requested file" do
+    it "tries permutations of partial names and default file extension to find the requested file" do
       File.should_receive(:file?).with("/tmp/whee/_whooo.html.mustache")
+      File.should_receive(:file?).with("/tmp/whee/whooo.html.mustache").and_return(true)
+
+      helper.locate_template_for(Pathname.new("/tmp/whee"), "whooo").should == Pathname.new("/tmp/whee/whooo.html.mustache")
+    end
+
+    it "tries permutations of partial names and configured file extension to find the requested file" do
+      Stache.configure do |config|
+        config.template_extension = 'mustache'
+      end
+
       File.should_receive(:file?).with("/tmp/whee/_whooo.mustache")
-      File.should_receive(:file?).with("/tmp/whee/whooo.html.mustache")
       File.should_receive(:file?).with("/tmp/whee/whooo.mustache").and_return(true)
 
       helper.locate_template_for(Pathname.new("/tmp/whee"), "whooo").should == Pathname.new("/tmp/whee/whooo.mustache")
+
+      Stache.configure do |config|
+        config.template_extension = 'html.mustache'
+      end
     end
+
+
     it "returns nil if it cannot find anything" do
       helper.locate_template_for(Pathname.new("/tmp/whee"), "whooo").should be_nil
     end

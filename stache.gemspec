@@ -5,7 +5,6 @@ Gem::Specification.new do |s|
   s.name = 'stache'
   s.version = Stache::VERSION
   s.platform = Gem::Platform::RUBY
-  s.date = '2012-01-06'
   s.authors = ['Matt Wilson']
   s.email = 'mhw@hypomodern.com'
   s.homepage = 'http://github.com/agoragames/stache'

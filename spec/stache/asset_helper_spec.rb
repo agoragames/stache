@@ -18,6 +18,21 @@ describe Stache::AssetHelper do
 
       helper.template_include_tag("widgets/oh_herro").should == "<script id=\"oh_herro_template\" type=\"text/html\">{{ awyeah }}</script>"
     end
+    it "renders a script tag with the template contents and given id" do
+      File.stub!(:file?).with(Rails.root.join("app/views/widgets/_oh_herro.html.mustache").to_s).and_return(true)
+      File.stub!(:open).with(Rails.root.join("app/views/widgets/_oh_herro.html.mustache"), "rb", {:encoding=>"utf-8"}).
+        and_return(StringIO.new("{{ awyeah }}"))
+
+      helper.template_include_tag("widgets/oh_herro", :id => 'oh_herro_tmpl').should == "<script id=\"oh_herro_tmpl\" type=\"text/html\">{{ awyeah }}</script>"
+    end
+    it "renders a script tag with the template contents and given options" do
+      File.stub!(:file?).with(Rails.root.join("app/views/widgets/_oh_herro.html.mustache").to_s).and_return(true)
+      File.stub!(:open).with(Rails.root.join("app/views/widgets/_oh_herro.html.mustache"), "rb", {:encoding=>"utf-8"}).
+        and_return(StringIO.new("{{ awyeah }}"))
+
+      helper.template_include_tag("widgets/oh_herro", :data => {:engine => 'mustache'}).
+        should == "<script data-engine=\"mustache\" id=\"oh_herro_template\" type=\"text/html\">{{ awyeah }}</script>"
+    end
     it "uses the template_base_path config setting to locate the template" do
       Stache.configure do |c|
         c.template_base_path = "/tmp/whee"

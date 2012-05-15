@@ -8,7 +8,11 @@ module Stache
         lookup_context.view_paths = [Stache.template_base_path]
 
         template_finder = lambda do |partial|
-          lookup_context.find(source, [], partial, [], { formats: [:html] })
+          if ActionPack::VERSION::MAJOR == 3 && ActionPack::VERSION::MINOR < 2
+            lookup_context.find(source, [], partial)
+          else # Rails 3.2 and higher
+            lookup_context.find(source, [], partial, [], { formats: [:html] })
+          end
         end
 
         template = template_finder.call(true) rescue template_finder.call(false)

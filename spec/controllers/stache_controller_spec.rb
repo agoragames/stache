@@ -23,5 +23,12 @@ describe StacheController do
     # puts response.body
   end
 
+  it "correctly uses the asset helpers" do
+    get :with_asset_helpers
+    assert_response 200
+
+    response.body.should =~ /Here's an image_path=\/assets\/image\.png/
+  end
+
 
 end

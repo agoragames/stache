@@ -75,6 +75,7 @@ This project builds on work done by the following people and projects:
 * olivernn's [Poirot](https://github.com/olivernn/poirot)
 * goodmike's [mustache_rails3](https://github.com/goodmike/mustache_rails3)
 * nex3's [HAML](https://github.com/nex3/haml)
+* cowboyd's [handlebars.rb](https://github.com/cowboyd/handlebars.rb)
 
 So: thanks a ton to those guys.
 
@@ -84,6 +85,8 @@ So: thanks a ton to those guys.
 * [subwindow](https://github.com/subwindow) provided some much needed love for Stache::View exception handling.
 * [solotimes](https://github.com/solotimes) provided better support for non-standard encodings.
 * [ajacksified](https://github.com/ajacksified) cleaned up template extension handling.
+* [ayamomiji](https://github.com/ayamomiji) extended the `#template_include_tag` to pass through the full range of `#content_tag` options.
+* [awestendorf](https://github.com/awestendorf) requested that `View#partial` not be so particular about leading underscores. Though I didn't use his code, his prompt lead me to investigate how to properly use Rails' internal template lookup code.
 
 ## Note on Patches/Pull Requests
 

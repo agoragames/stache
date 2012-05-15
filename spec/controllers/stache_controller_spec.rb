@@ -28,6 +28,7 @@ describe StacheController do
     assert_response 200
 
     response.body.should =~ /Here's an image_path=\/assets\/image\.png/
+    response.body.should =~ /link href="\/assets\/test\.css"/
   end
 
 

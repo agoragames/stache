@@ -4,4 +4,8 @@ class Stache::WithAssetHelpers < Stache::View
     @my_image ||= image_path("image.png")
   end
 
+  def my_styles
+    @my_styles ||= stylesheet_link_tag("test")
+  end
+
 end

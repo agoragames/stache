@@ -5,31 +5,20 @@ module Stache
     def template_include_tag(*sources)
       options = sources.extract_options!
       sources.collect do |source|
-        exploded = source.split("/")
-        file = exploded.pop
-        file = file.split(".").first
+        lookup_context.view_paths = [Stache.template_base_path]
 
-        base_path = Stache.template_base_path.join(*exploded)
-        template_path = locate_template_for(base_path, file)
-        if template_path
-          template = ::File.open(template_path, "rb" , :encoding => Rails.configuration.encoding)
-          options = options.reverse_merge(:type => "text/html", :id => "#{file.dasherize.underscore}_template")
-          content_tag(:script, template.read.html_safe, options)
-        else
-          raise ActionView::MissingTemplate.new(potential_paths(base_path, file), file, [base_path], false, { :handlers => [:mustache] })
+        template_finder = lambda do |partial|
+          lookup_context.find(source, [], partial, [], { formats: [:html] })
         end
+
+        template = template_finder.call(true) rescue template_finder.call(false)
+        template_id = source.split("/").last
+
+        options = options.reverse_merge(:type => "text/html", :id => "#{template_id.dasherize.underscore}_template")
+        content_tag(:script, template.source, options)
+
       end.join("\n").html_safe
     end
 
-    def potential_paths(path, candidate_file_name)
-      [
-        path.join("_#{candidate_file_name}.#{Stache.template_extension}"),
-        path.join("#{candidate_file_name}.#{Stache.template_extension}")
-      ]
-    end
-
-    def locate_template_for(path, candidate_file_name)
-      potential_paths(path, candidate_file_name).find { |file| File.file?(file.to_s) }
-    end
   end
 end

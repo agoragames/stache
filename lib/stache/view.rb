@@ -3,8 +3,6 @@ require 'mustache'
 module Stache
   #
   # A Convienent Base Class for the views. Subclass this for autoloading magic with your templates.
-  #
-  # e.g. if the handler is loading a template from templates/
   class View < ::Mustache
     attr_accessor :view, :template, :virtual_path
 

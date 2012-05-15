@@ -52,15 +52,6 @@ describe Stache::AssetHelper do
       helper.template_include_tag("widgets/oh_herro", :data => {:engine => 'mustache'}).
         should == "<script data-engine=\"mustache\" id=\"oh_herro_template\" type=\"text/html\">{{ awyeah }}</script>"
     end
-    it "uses the template_base_path config setting to locate the template" do
-      Stache.configure do |c|
-        c.template_base_path = "/tmp/whee"
-      end
-      helper.lookup_context.should_receive(:view_paths=).with([Stache.template_base_path])
-      helper.lookup_context.should_receive(:find).with('whooo', [], true, [], anything).and_return(TemplateStub.new("{{ awyeah }}"))
-
-      helper.template_include_tag("whooo").should == "<script id=\"whooo_template\" type=\"text/html\">{{ awyeah }}</script>"
-    end
     it "will find first by partial and later by non-partial" do
       helper.lookup_context.should_receive(:find).with('widgets/oh_herro', anything, true, anything, anything).and_raise(StandardError.new("noooooo"))
       helper.lookup_context.should_receive(:find).with('widgets/oh_herro', anything, false, anything, anything).and_return(TemplateStub.new("{{ awyeah }}"))

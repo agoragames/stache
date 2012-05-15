@@ -5,8 +5,6 @@ module Stache
     def template_include_tag(*sources)
       options = sources.extract_options!
       sources.collect do |source|
-        lookup_context.view_paths = [Stache.template_base_path]
-
         template_finder = lambda do |partial|
           if ActionPack::VERSION::MAJOR == 3 && ActionPack::VERSION::MINOR < 2
             lookup_context.find(source, [], partial)

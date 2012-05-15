@@ -16,14 +16,10 @@ module Stache
       super(method, include_private) || view.respond_to?(method, include_private)
     end
 
-    # Redefine where Stache::View templates locate their partials:
-    #
-    # (1) in the same directory as the current template file.
-    # (2) in the shared templates path (can be configured via Config.shared_path=(value))
-    #
+    # Redefine where Stache::View templates locate their partials
     def partial(name)
       current_dir = Stache.template_base_path.join( self.virtual_path.split("/")[0..-2].join("/") )
-      lookup_context.view_paths = [Stache.template_base_path, current_dir]
+      lookup_context.view_paths += [current_dir]
 
       template_finder = lambda do |partial|
         if ActionPack::VERSION::MAJOR == 3 && ActionPack::VERSION::MINOR < 2

@@ -1,11 +1,16 @@
 # stache
 
-A Rails 3.x compatible Mustache Template Handler, with support for partials and a couple extra niceties to make sharing the raw templates with client-side javascript a little easier.
+A Rails 3.x compatible Mustache/Handlebars Template Handler, with support for partials and a couple extra niceties to make sharing the raw templates with client-side javascript a little easier. It's a one-stop shop for your facial-hair-inspired templates.
 
 [![Build Status](https://secure.travis-ci.org/agoragames/stache.png)](http://travis-ci.org/agoragames/stache)
 
+## Notice Of Breaking Changes
+
+Stache 0.9.x adds handlebars support. In the process, the public API has changed *ever-so-slightly*. Specifically, you'll need to require the mustache or handlebars gems on your own, **and** you'll need to tell Stache which one (or both!) you want to use. Add `config.use :mustache` to your initializer.
+
 ## Usage
 
+    gem "mustache" # or "handlebars"
     gem "stache"
 
 Install the gem. If you want to override any of the configuration options (see `stache/config`), toss an initializer in `config/initializers` and:
@@ -14,13 +19,18 @@ Install the gem. If you want to override any of the configuration options (see `
 Stache.configure do |c|
   c.template_base_path = "..."  # this is probably the one you'll want to change
                                 # it defaults to app/templates
+
+  # N.B. YOU MUST TELL STACHE WHICH TO USE:
+  c.use :mustache
+  # and / or
+  c.use :handlebars
 end
 
 # or if the block style ain't yer thang, just:
 Stache.template_base_path = File.join(Rails.root, "app", "şablon")
 ```
 
-There is as of right now one provided helper, `template_include_tag`. Give it the name of a partial and it will write it raw to a script block. On the todo list is the ability to customize this helper a little more :).
+There is as of right now one provided helper, `template_include_tag`. Give it the name of a partial and it will write it raw to a script block.
 
 ## A View Class of your Very Own
 
@@ -57,6 +67,16 @@ end
 <!-- in the view, then -->
 <p>Here's a helper_method call: {{ my_view_helper_method }}</p>
 ```
+
+### Handlebars?
+
+Handlebars will have full access to your rails view helpers.
+
+```
+I'm a handlebars template. Look at me call a helper: {{{image_path my_image}}}
+```
+
+You can subclass `Stache::Handlebars::View` in the same way as mustache above, but there isn't as much point in doing so.
 
 ## Of Note
 

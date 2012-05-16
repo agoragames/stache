@@ -24,13 +24,13 @@ There is as of right now one provided helper, `template_include_tag`. Give it th
 
 ## A View Class of your Very Own
 
-To facilitate easy integration, 'Stache comes packaged with a fully-functioning subclass of Mustache, called `Stache::View`. It will try to find a more appropriate view class to provide to the template renderer based on the template name, but if one cannot be found it will automatically give ya a `Stache::View` so you can have *something*.
+To facilitate easy integration, 'Stache comes packaged with a fully-functioning subclass of Mustache, called `Stache::Mustache::View`. It will try to find a more appropriate view class to provide to the template renderer based on the template name, but if one cannot be found it will automatically give ya a `Stache::Mustache::View` so you can have *something*.
 
-Needless to say, it's probably better if your custom View objects are subclasses of `Stache::View`. That way we can all be sure that the handler will render correctly.
+Needless to say, it's probably better if your custom View objects are subclasses of `Stache::Mustache::View`. That way we can all be sure that the handler will render correctly.
 
 An example by way of explanation:
 
-With a template `app/templates/profiles/index`, Stache will look for a view named `Profiles::Index`, and, if not found, will just use the base `Stache::View`. Stache adds `app/views` to Rails' autoload paths, so here's a sample directory structure and some sample files:
+With a template `app/templates/profiles/index`, Stache will look for a view named `Profiles::Index`, and, if not found, will just use the base `Stache::Mustache::View`. Stache adds `app/views` to Rails' autoload paths, so here's a sample directory structure and some sample files:
 
 ```
 app/
@@ -45,7 +45,7 @@ app/
 ```ruby
 # in profiles/index.rb
 module Profiles
-  class Index < ::Stache::View
+  class Index < ::Stache::Mustache::View
     def my_view_helper_method
       "whoo"
     end
@@ -82,7 +82,7 @@ So: thanks a ton to those guys.
 ## Contributors
 
 * [afeld](https://github.com/afeld) provided 1.8.7 compatibility fixes.
-* [subwindow](https://github.com/subwindow) provided some much needed love for Stache::View exception handling.
+* [subwindow](https://github.com/subwindow) provided some much needed love for Stache::Mustache::View exception handling.
 * [solotimes](https://github.com/solotimes) provided better support for non-standard encodings.
 * [ajacksified](https://github.com/ajacksified) cleaned up template extension handling.
 * [ayamomiji](https://github.com/ayamomiji) extended the `#template_include_tag` to pass through the full range of `#content_tag` options.

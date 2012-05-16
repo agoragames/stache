@@ -1,4 +1,4 @@
-class Stache::WithAssetHelpers < Stache::View
+class Stache::WithAssetHelpers < Stache::Mustache::View
 
   def my_image
     @my_image ||= image_path("image.png")

@@ -10,4 +10,6 @@ Dummy::Application.routes.draw do
   get 'handlebars/with_partials', :to => 'handlebars#with_partials'
 
   get 'handlebars/with_helpers', :to => 'handlebars#with_helpers'
+
+  get 'handlebars/with_missing_data', :to => 'handlebars#with_missing_data'
 end

@@ -18,7 +18,9 @@ module Stache
 
           handlebars.register_helper('helperMissing') do |name, *args|
             meth, *params, options = args
-            if self.respond_to?(meth)
+            if params.size == 0
+              ""
+            elsif self.respond_to?(meth)
               self.send(meth, *params)
             else
               raise "Could not find property '\#\{meth\}'"
@@ -32,8 +34,6 @@ module Stache
           vars.merge!(partial_renderer.instance_variable_get('@locals') || {})
           options = partial_renderer.instance_variable_get('@options')
           vars.merge!(options[:context] || {}) if options
-
-          Rails.logger.info vars.inspect
 
           handlebars.partial_missing do |name|
             search_path = '#{template.virtual_path}'.split("/")[0..-2]

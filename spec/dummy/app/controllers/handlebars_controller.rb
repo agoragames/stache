@@ -15,4 +15,8 @@ class HandlebarsController < ApplicationController
     @some_text = "lowercase"
   end
 
+  def with_missing_data
+    #with_missing_data.html.hbs
+  end
+
 end

@@ -1,3 +1,7 @@
+# 0.9.1
+
+* soften our hardcore stance on missing properties.
+
 # 0.9.0
 
 /!\ /!\ Breaking Changes.

@@ -31,5 +31,12 @@ describe HandlebarsController do
     response.body.should =~ /Here's a capitalized string: Lowercase/
   end
 
+  it "doesn't blow up if it is missing data" do
+    get :with_missing_data
+    assert_response 200
+
+    response.body.should =~ /I should not \./
+  end
+
 
 end

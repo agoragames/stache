@@ -1,8 +1,7 @@
 class StacheController < ApplicationController
+  layout false
 
   def index
-    @user = params[:user] || "Matt"
-    # index.html.mustache
   end
 
   def with_partials

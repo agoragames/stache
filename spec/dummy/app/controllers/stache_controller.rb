@@ -14,4 +14,8 @@ class StacheController < ApplicationController
     # with_asset_helpers.html.mustache
   end
 
+  def with_layout
+
+  end
+
 end

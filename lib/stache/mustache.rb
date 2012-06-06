@@ -1,4 +1,5 @@
 require "stache/mustache/handler"
+require "stache/mustache/layout"
 
 module Stache
   module Mustache; end

@@ -31,5 +31,10 @@ describe StacheController do
     response.body.should =~ /link href="\/assets\/test\.css"/
   end
 
+  it "uses a layout" do
+    get :with_layout
+    assert_response 200
 
+    response.body.should == "Wrap\nThis is wrapped in a layout\n\nEndWrap\n"
+  end
 end

@@ -1,1 +1,1 @@
-rvm use --create 1.9.2-p180@stache_gem
+rvm use --create 1.9.3@stache_gem

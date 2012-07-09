@@ -4,7 +4,7 @@ describe StacheController do
   render_views
 
   before do
-    Stache.template_base_path = ::Rails.root.join('app', 'views')
+    #Stache.template_base_path = ::Rails.root.join('app', 'views')
   end
 
   it "can get to index and render a Mustache" do
@@ -31,5 +31,18 @@ describe StacheController do
     response.body.should =~ /link href="\/assets\/test\.css"/
   end
 
+  it "uses a layout" do
+    get :with_layout
+    assert_response 200
 
+    response.body.should == "Wrap\nThis is wrapped in a layout\n\nEndWrap\n"
+  end
+
+  it "can get render a mustache with rails helpers", :type => :stache do
+    get :helper
+    assert_response 200
+
+    response.should render_template 'helper'               # view
+    response.body.should == "/stache\n"
+  end
 end

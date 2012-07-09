@@ -32,6 +32,17 @@ module Stache
         template.source
       end
 
+      def helpers
+        self.class.helpers
+      end
+      alias :h :helpers
+
+      class << self
+        def helpers
+          Stache::ViewContext.current
+        end
+        alias :h :helpers
+      end
     end
   end
 end

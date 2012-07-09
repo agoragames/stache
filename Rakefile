@@ -15,9 +15,6 @@ rescue Bundler::BundlerError => e
 end
 require 'rake'
 
-require 'bueller'
-Bueller::Tasks.new
-
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:examples) do |examples|
   examples.rspec_opts = '-Ispec'

@@ -1,31 +1,14 @@
-require 'rubygems'
-
-begin
-  require 'bundler'
-rescue LoadError
-  $stderr.puts "You must install bundler - run `gem install bundler`"
-end
-
-begin
-  Bundler.setup
-rescue Bundler::BundlerError => e
-  $stderr.puts e.message
-  $stderr.puts "Run `bundle install` to install missing gems"
-  exit e.status_code
-end
+require 'bundler/gem_tasks'
 require 'rake'
-
 require 'rspec/core/rake_task'
-RSpec::Core::RakeTask.new(:examples) do |examples|
-  examples.rspec_opts = '-Ispec'
+
+RSpec::Core::RakeTask.new(:spec) do |spec|
+  spec.pattern = 'spec/**/*_spec.rb'
+  spec.rspec_opts = ['--backtrace']
+  # spec.ruby_opts = ['-w']
 end
 
-RSpec::Core::RakeTask.new(:rcov) do |spec|
-  spec.rspec_opts = '-Ispec'
-  spec.rcov = true
-end
-
-task :default => :examples
+task :default => :spec
 
 require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|

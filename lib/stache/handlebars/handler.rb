@@ -12,19 +12,26 @@ module Stache
 
       def compile(template)
         handlebars_class = handlebars_class_from_template(template)
-
         <<-RUBY_CODE
           handlebars = ::#{handlebars_class}.new
+          handlebars.view = self
 
           handlebars.register_helper('helperMissing') do |name, *args|
             meth, *params, options = args
-            if params.size == 0
-              ""
+
+            if handlebars.respond_to?(meth)
+              handlebars.send(meth, *params)
             elsif self.respond_to?(meth)
               self.send(meth, *params)
+            elsif params.size == 0
+              ""
             else
               raise "Could not find property '\#\{meth\}'"
             end
+          end
+
+          handlebars.register_helper('yield') do |name, *args|
+            content_for(:layout)
           end
 
           template = handlebars.compile('#{template.source.gsub(/'/, "\\\\'")}');

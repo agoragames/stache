@@ -23,7 +23,7 @@ module Stache
 
           # If we are rendering an abstract Stache::View class, don't render any template.
           if #{mustache_class} == Stache::Mustache::View
-            template_source = ''
+            template_source = '#{template.source.gsub(/'/, "\\\\'")}'
           else
             template_name = mustache.template_name+".#{template.formats.first.to_s}."+mustache.template_extension
             template_source = File.read(File.join(::Stache.template_base_path, template_name))

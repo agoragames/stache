@@ -4,6 +4,12 @@ A Rails 3.x compatible Mustache/Handlebars Template Handler, with support for pa
 
 [![Build Status](https://secure.travis-ci.org/agoragames/stache.png)](http://travis-ci.org/agoragames/stache)
 
+## 1.0.0.rc
+
+Major overhaul to the mustache side of things. Backwards compatibility *should* be intact. If not, file a bug and it will get taken care of.
+
+Handlebars can also handle application layouts, and you can use subclasses of Stache::Handlebars::View to define view-specific helpers now.
+
 ## Notice Of Breaking Changes
 
 Stache 0.9.x adds handlebars support. In the process, the public API has changed *ever-so-slightly*. Specifically, you'll need to require the mustache or handlebars gems on your own, **and** you'll need to tell Stache which one (or both!) you want to use. Add `config.use :mustache` to your initializer.

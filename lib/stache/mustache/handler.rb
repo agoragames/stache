@@ -22,7 +22,6 @@ module Stache
           mustache.view = self
 
           # If we are rendering an abstract Stache::View class, don't render any template.
-          # This is normally used because of rspec-rails and how stupid rails view rendering works.
           if #{mustache_class} == Stache::Mustache::View
             template_source = ''
           else
@@ -62,7 +61,7 @@ module Stache
       # suss out a constant name for the given template
       def mustache_class_from_template(template)
         # If we don't have a source template to render, return an abstract view class.
-        # This is normally used with rspec-rails. You probably never want to normally 
+        # This is normally used with rspec-rails. You probably never want to normally
         # render a bare Stache::View
         if template.source.empty?
           return Stache::Mustache::View

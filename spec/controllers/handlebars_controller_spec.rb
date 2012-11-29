@@ -15,6 +15,20 @@ describe HandlebarsController do
     response.body.should =~ /Hello, Matt!/
   end
 
+  it "can render using a module wrapper" do
+    begin
+      Stache.wrapper_module_name = "Wrapper"
+
+      get :with_wrapper
+      assert_response 200
+
+      response.should render_template 'with_wrapper'
+      response.body.should =~ /Yes/
+    ensure
+      Stache.wrapper_module_name = nil
+    end
+  end
+
   it "correctly renders partials" do
     get :with_partials
     assert_response 200

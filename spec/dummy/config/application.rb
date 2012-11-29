@@ -43,5 +43,7 @@ module Dummy
     config.filter_parameters += [:password]
 
     config.assets.enabled = true
+
+    config.autoload_paths += %W(#{config.root}/lib)
   end
 end

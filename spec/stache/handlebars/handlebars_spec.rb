@@ -34,4 +34,26 @@ describe Stache::Handlebars::Handler do
       Object.send(:remove_const, :Profiles)
     end
   end
+
+  describe "#handlebars_class_from_template with config module wrapper set" do
+    before do
+      Stache.wrapper_module_name = "Wrapper"
+    end
+
+    it "returns the appropriate handlebars class" do
+      module Wrapper; class HelloWorld < ::Stache::Handlebars::View; end; end
+      @handler.handlebars_class_from_template(@template).should == Wrapper::HelloWorld
+      Object.send(:remove_const, :Wrapper)
+    end
+    it "is clever about folders and such" do
+      @template.stub!(:virtual_path).and_return("profiles/index")
+      module Wrapper; module Profiles; class Index < ::Stache::Handlebars::View; end; end; end
+      @handler.handlebars_class_from_template(@template).should == Wrapper::Profiles::Index
+      Object.send(:remove_const, :Wrapper)
+    end
+
+    after do
+      Stache.wrapper_module_name = nil
+    end
+  end
 end

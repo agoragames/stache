@@ -70,6 +70,8 @@ module Stache
       # suss out a constant name for the given template
       def handlebars_class_from_template(template)
         const_name = ActiveSupport::Inflector.camelize(template.virtual_path.to_s)
+        const_name = "#{Stache.wrapper_module_name}::#{const_name}" if Stache.wrapper_module_name
+
         begin
           const_name.constantize
         rescue NameError, LoadError => e

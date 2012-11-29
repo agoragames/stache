@@ -4,7 +4,7 @@ A Rails 3.x compatible Mustache/Handlebars Template Handler, with support for pa
 
 [![Build Status](https://secure.travis-ci.org/agoragames/stache.png)](http://travis-ci.org/agoragames/stache)
 
-## 1.0.0.rc
+## 1.0.0
 
 Major overhaul to the mustache side of things. Backwards compatibility *should* be intact. If not, file a bug and it will get taken care of.
 

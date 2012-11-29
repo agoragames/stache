@@ -18,6 +18,10 @@ class StacheController < ApplicationController
 
   end
 
+  def with_wrapper
+
+  end
+
   def helper
     Stache::ViewContext.current = self.view_context
   end

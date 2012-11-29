@@ -26,6 +26,10 @@ Stache.configure do |c|
   c.template_base_path = "..."  # this is probably the one you'll want to change
                                 # it defaults to app/templates
 
+  c.wrapper_module_name = "..." # this let's you indicate the name of a module that
+                                # namespaces all your view classes, useful, if you
+                                # have a naming conflict, such as with a mailer
+
   # N.B. YOU MUST TELL STACHE WHICH TO USE:
   c.use :mustache
   # and / or
@@ -73,6 +77,10 @@ end
 <!-- in the view, then -->
 <p>Here's a helper_method call: {{ my_view_helper_method }}</p>
 ```
+
+With the wrapper_module_name configuration set to "Wrapper":
+
+With a template `app/templates/profiles/index`, Stache will look for a view named `Wrapper::Profiles::Index`, and, if not found, will just use the base `Stache::Mustache::View`.
 
 ### Handlebars?
 

@@ -9,6 +9,8 @@ Dummy::Application.routes.draw do
 
   get 'stache/with_asset_helpers', :to => 'stache#with_asset_helpers'
 
+  get 'stache/with_wrapper', :to => 'stache#with_wrapper'
+
   get 'handlebars', :to => 'handlebars#index', :as => 'handlebars'
 
   get 'handlebars/with_partials', :to => 'handlebars#with_partials'
@@ -16,4 +18,6 @@ Dummy::Application.routes.draw do
   get 'handlebars/with_helpers', :to => 'handlebars#with_helpers'
 
   get 'handlebars/with_missing_data', :to => 'handlebars#with_missing_data'
+
+  get 'handlebars/with_wrapper', :to => 'handlebars#with_wrapper'
 end

@@ -25,7 +25,7 @@ module Stache
           if #{mustache_class} == Stache::Mustache::View
             template_source = '#{template.source.gsub(/'/, "\\\\'")}'
           else
-            template_name = mustache.template_name+".#{template.formats.first.to_s}."+mustache.template_extension
+            template_name = "#{template.virtual_path.to_s}.#{template.formats.first.to_s}."+mustache.template_extension
             template_source = File.read(File.join(::Stache.template_base_path, template_name))
           end
 
@@ -68,6 +68,7 @@ module Stache
         end
 
         const_name = ActiveSupport::Inflector.camelize(template.virtual_path.to_s)
+        const_name = "#{Stache.wrapper_module_name}::#{const_name}" if Stache.wrapper_module_name
         begin
           const_name.constantize
         rescue NameError, LoadError => e

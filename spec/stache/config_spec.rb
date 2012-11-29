@@ -7,8 +7,7 @@ describe "Stache::Config" do
     end
     [:template_base_path, :shared_path].each do |attr|
       it "sets up an attribute named #{attr.to_s}" do
-        Stache.should respond_to(attr)
-        Stache.should respond_to("#{attr}=")
+        should_set_up_attr_accessor_for(attr)
       end
 
       it "sets up a default value for #{attr}" do
@@ -19,6 +18,15 @@ describe "Stache::Config" do
           ::Rails.root.join('app', 'templates', 'shared')
         end
       end
+    end
+
+    it "sets up an attribute named wrapper_module_name" do
+      attr = :wrapper_module_name
+      should_set_up_attr_accessor_for(attr)
+    end
+
+    it "sets a default value for wrapper_module_name" do
+      Stache.send(:wrapper_module_name).should be_nil
     end
   end
 
@@ -32,6 +40,11 @@ describe "Stache::Config" do
         config.template_base_path = ::Rails.root.join('app', 'views')
       end
     end
+  end
+
+  def should_set_up_attr_accessor_for(attr)
+    Stache.should respond_to(attr)
+    Stache.should respond_to("#{attr}=")
   end
 
 end

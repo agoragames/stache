@@ -19,4 +19,8 @@ class HandlebarsController < ApplicationController
     #with_missing_data.html.hbs
   end
 
+  def with_wrapper
+
+  end
+
 end

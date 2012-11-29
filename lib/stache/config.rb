@@ -11,12 +11,11 @@ module Stache
   #   use :mustache # or :handlebars
   # end
   module Config
-    attr_accessor :template_base_path, :shared_path
+    attr_accessor :template_base_path, :shared_path, :wrapper_module_name
 
     def configure
       yield self
     end
-
 
     def template_base_path
       @template_base_path ||= ::Rails.root.join('app', 'templates')
@@ -28,6 +27,10 @@ module Stache
 
     def shared_path
       @shared_path ||= ::Rails.root.join('app', 'templates', 'shared')
+    end
+
+    def wrapper_module_name
+      @wrapper_module_name ||= nil
     end
 
     def use template_engine

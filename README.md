@@ -26,7 +26,7 @@ Stache.configure do |c|
   c.template_base_path = "..."  # this is probably the one you'll want to change
                                 # it defaults to app/templates
 
-  c.wrapper_module_name = "..." # this let's you indicate the name of a module that
+  c.wrapper_module_name = "..." # this lets you indicate the name of a module that
                                 # namespaces all your view classes, useful, if you
                                 # have a naming conflict, such as with a mailer
 
@@ -122,6 +122,7 @@ So: thanks a ton to those guys.
 * [ayamomiji](https://github.com/ayamomiji) extended the `#template_include_tag` to pass through the full range of `#content_tag` options.
 * [awestendorf](https://github.com/awestendorf) requested that `View#partial` not be so particular about leading underscores. Though I didn't use his code, his prompt lead me to investigate how to properly use Rails' internal template lookup code.
 * [zombor](https://github.com/zombor) contributed an overhaul to the Mustache renderer that puts Mustache classes themselves in control of the render chain, not Rails.
+* [kategengler](https://github.com/kategengler) contributed a patch to allow folks to specify a namespace for their view objects.
 
 Thanks a ton to all of the contributors as well. This would never have grown beyond a mediocre tool that rendered partials without their help!
 

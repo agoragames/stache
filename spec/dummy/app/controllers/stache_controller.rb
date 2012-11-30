@@ -26,4 +26,12 @@ class StacheController < ApplicationController
     Stache::ViewContext.current = self.view_context
   end
 
+  def no_format_in_extension
+
+  end
+
+  def no_format_in_extension_with_wrapper
+
+  end
+
 end

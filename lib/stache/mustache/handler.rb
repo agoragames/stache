@@ -22,8 +22,7 @@ module Stache
         # only for templates containing the word `module`, and reads the template again from the file
         # system.
 
-        template_is_class = false
-        template_is_class = true if template.source.match(/module/)
+        template_is_class = template.source.match(/module/) ? true : false
 
         # Return a string that will be eval'd in the context of the ActionView, ugly, but it works.
         <<-MUSTACHE

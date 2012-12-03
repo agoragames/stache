@@ -11,6 +11,10 @@ Dummy::Application.routes.draw do
 
   get 'stache/with_wrapper', :to => 'stache#with_wrapper'
 
+  get 'stache/no_format_in_extension', :to => 'stache#no_format_in_extension'
+
+  get 'stache/no_format_in_extension_with_wrapper', :to => 'stache#no_format_in_extension_with_wrapper'
+
   get 'handlebars', :to => 'handlebars#index', :as => 'handlebars'
 
   get 'handlebars/with_partials', :to => 'handlebars#with_partials'

@@ -16,17 +16,26 @@ module Stache
         # get a custom Mustache, or the default Stache::Mustache::View
         mustache_class = mustache_class_from_template(template)
 
+        # If the class is in the same directory as the template, the source of the template can be the
+        # source of the class, and so we need to read the template source from the file system.
+        # Matching against `module` may seem a bit hackish, but at worst it provides false positives
+        # only for templates containing the word `module`, and reads the template again from the file
+        # system.
+
+        template_is_class = false
+        template_is_class = true if template.source.match(/module/)
+
         # Return a string that will be eval'd in the context of the ActionView, ugly, but it works.
         <<-MUSTACHE
           mustache = ::#{mustache_class}.new
           mustache.view = self
 
-          # If we are rendering an abstract Stache::View class, don't render any template.
-          if #{mustache_class} == Stache::Mustache::View
-            template_source = '#{template.source.gsub(/'/, "\\\\'")}'
+          if #{template_is_class}
+            template_name = "#{template.virtual_path.to_s}"
+            file = Dir.glob(File.join(::Stache.template_base_path, template_name + "\.*" + mustache.template_extension)).first
+            template_source = File.read(file)
           else
-            template_name = "#{template.virtual_path.to_s}.#{template.formats.first.to_s}."+mustache.template_extension
-            template_source = File.read(File.join(::Stache.template_base_path, template_name))
+            template_source = '#{template.source.gsub(/'/, "\\\\'")}'
           end
 
           mustache.template = template_source

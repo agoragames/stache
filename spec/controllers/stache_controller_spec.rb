@@ -59,4 +59,26 @@ describe StacheController do
     response.should render_template 'helper'               # view
     response.body.should == "/stache\n"
   end
+
+  it "does not require the format in the extension with view class" do
+    get :no_format_in_extension
+    assert_response 200
+
+    response.should render_template 'no_format_in_extension'
+    response.body.should == "No format"
+  end
+
+  it "does not require the format in the extension with view class and wrapper module" do
+    begin
+      Stache.wrapper_module_name = "Wrapper"
+
+      get :no_format_in_extension_with_wrapper
+      assert_response 200
+
+      response.should render_template 'no_format_in_extension_with_wrapper'
+      response.body.should == "No format"
+    ensure
+      Stache.wrapper_module_name = nil
+    end
+  end
 end

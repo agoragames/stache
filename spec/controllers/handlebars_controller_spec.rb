@@ -23,7 +23,7 @@ describe HandlebarsController do
       assert_response 200
 
       response.should render_template 'with_wrapper'
-      response.body.should =~ /Yes/
+      response.body.should =~ /answer: Yes/
     ensure
       Stache.wrapper_module_name = nil
     end

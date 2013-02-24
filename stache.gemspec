@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.add_development_dependency 'mustache'
-  s.add_development_dependency 'handlebars', '~>0.3.2'
+  s.add_development_dependency 'handlebars', '~>0.4.0'
   s.add_development_dependency 'rails', '~>3.2.0'
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'rspec-rails'

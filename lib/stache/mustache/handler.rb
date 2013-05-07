@@ -39,6 +39,7 @@ module Stache
 
           mustache.template = template_source
           mustache.virtual_path = '#{template.virtual_path.to_s}'
+          mustache[:yield] = content_for(:layout)
           mustache.context.update(local_assigns)
           variables = controller.instance_variable_names
           variables -= %w[@template]

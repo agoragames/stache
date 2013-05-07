@@ -1,3 +1,7 @@
+# 1.0.1
+
+* Fix a regression in mustache layout handling.
+
 # 1.0.0
 
 * Overhauled Mustache template engine. If you wish to have Mustache drive your entire template stack, you can invert control to it.

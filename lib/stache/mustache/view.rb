@@ -18,13 +18,13 @@ module Stache
       # Redefine where Stache::View templates locate their partials
       def partial(name)
         current_dir = Stache.template_base_path.join( self.virtual_path.split("/")[0..-2].join("/") )
-        lookup_context.view_paths += [current_dir]
+        lookup_context.view_paths += [current_dir, Stache.template_base_path]
 
         template_finder = lambda do |partial|
           if ActionPack::VERSION::MAJOR == 3 && ActionPack::VERSION::MINOR < 2
             lookup_context.find(name, [], partial)
           else # Rails 3.2 and higher
-            lookup_context.find(name, [], partial, [], { formats: [:html], handlers: [:mustache] })
+            lookup_context.find(name, [], partial, [], { formats: [:html, :text], handlers: [:mustache] })
           end
         end
 

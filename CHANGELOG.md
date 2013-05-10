@@ -1,5 +1,9 @@
 # 1.0.1
 
+* Change autoload paths to an array of Strings instead of Pathnames, for greater compatibility.
+
+# 1.0.1
+
 * Fix a regression in mustache layout handling.
 
 # 1.0.0

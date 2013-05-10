@@ -123,6 +123,7 @@ So: thanks a ton to those guys.
 * [awestendorf](https://github.com/awestendorf) requested that `View#partial` not be so particular about leading underscores. Though I didn't use his code, his prompt lead me to investigate how to properly use Rails' internal template lookup code.
 * [zombor](https://github.com/zombor) contributed an overhaul to the Mustache renderer that puts Mustache classes themselves in control of the render chain, not Rails.
 * [kategengler](https://github.com/kategengler) contributed a patch to allow folks to specify a namespace for their view objects.
+* [joker1007](https://github.com/joker1007) contributed a patch making the autoload paths setup more broadly compatible.
 
 Thanks a ton to all of the contributors as well. This would never have grown beyond a mediocre tool that rendered partials without their help!
 

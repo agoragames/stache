@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.homepage = 'http://github.com/agoragames/stache'
   s.summary = %Q{Configurable Mustache Handler and Helpers for Rails}
   s.description = %Q{A rails 3.x compatible template handler, configurable.}
+  s.license = 'MIT'
   s.extra_rdoc_files = [
     'LICENSE',
     'README.md',

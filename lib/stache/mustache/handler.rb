@@ -52,6 +52,11 @@ module Stache
             mustache.instance_variable_set(name, controller.instance_variable_get(name))
           end
 
+          # Add view instance variables also so RSpec view spec assigns will work
+          (instance_variable_names - variables).each do |name|
+            mustache.instance_variable_set(name, instance_variable_get(name))
+          end
+
           # Declaring an +attr_reader+ for each instance variable in the
           # Stache::Mustache::View subclass makes them available to your templates.
           mustache.class.class_eval do

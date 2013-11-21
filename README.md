@@ -92,6 +92,54 @@ I'm a handlebars template. Look at me call a helper: {{{image_path my_image}}}
 
 You can subclass `Stache::Handlebars::View` in the same way as mustache above, but there isn't as much point in doing so.
 
+## View Specs
+
+Yes, you can write view specs using RSpec for your Stache templates! You can use RSpec's `assign` method to 
+assign values to view instance variables, which will then be be available to the Stache view, either as 
+instance variables, or via an accessor. Any instance variables defined in the RSpec example will also be
+similarly available, so
+
+```ruby
+    it "should display my instance variable" do
+      assign(:resource, "Foo")
+      render
+      ...
+    end
+```
+and
+
+```ruby
+    it "should display my instance variable" do
+      @resource = "Foo"
+      render
+      ...
+    end
+```
+both make `@resource` available to the Stache view.
+
+## Non-Mustache Partials
+
+Yes, you can include non-Mustache partials (and templates) in your Stache templates. However, the
+`{{>partial_name_here}}` syntax in the template won't find a non-Mustache template. You can define
+a method in the view and reference it in the template. The view method should use `@view.render` to
+render the non-Mustache partial and return its content. Example:
+
+Mustache template:
+
+```
+    {{{my_haml_sidebar}}}
+```
+
+View:
+
+```ruby
+   class MyPage < ::Stache::Mustache::View
+     def my_haml_sidebar
+       @view.render partial: 'somewhere/some_haml_partial_name'
+     end
+   end
+```
+
 ## Of Note
 
 This is code that was ripped out of a research project. It probably has some rough edges.

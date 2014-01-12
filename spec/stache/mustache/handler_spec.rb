@@ -17,7 +17,7 @@ describe Stache::Mustache::Handler do
       Object.send(:remove_const, :HelloWorld)
     end
     it "is clever about folders and such" do
-      @template.stub!(:virtual_path).and_return("profiles/index")
+      @template.stub(:virtual_path).and_return("profiles/index")
       module Profiles; class Index < Stache::Mustache::View; end; end
       @handler.mustache_class_from_template(@template).should == Profiles::Index
       Object.send(:remove_const, :Profiles)
@@ -26,7 +26,7 @@ describe Stache::Mustache::Handler do
       @handler.mustache_class_from_template(@template).should == Stache::Mustache::View
     end
     it "reraises error if loaded mustache_class raises a NameError" do
-      @template.stub!(:virtual_path).and_return("profiles/index")
+      @template.stub(:virtual_path).and_return("profiles/index")
       module Profiles; end
       # Emulate autoload behavior so the error gets raised upon const_get
       Profiles.autoload :Index, File.join(File.dirname(__FILE__), "profile_autoload.rb")
@@ -50,7 +50,7 @@ describe Stache::Mustache::Handler do
       Object.send(:remove_const, :Wrapper)
     end
     it "is clever about folders and such" do
-      @template.stub!(:virtual_path).and_return("profiles/index")
+      @template.stub(:virtual_path).and_return("profiles/index")
       module Wrapper; module Profiles; class Index < ::Stache::Mustache::View; end; end; end
       @handler.mustache_class_from_template(@template).should == Wrapper::Profiles::Index
       Object.send(:remove_const, :Wrapper)

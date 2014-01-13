@@ -1,12 +1,18 @@
-# 1.0.1
+# CHANGELOG
+
+## 1.0.3 (master)
+
+* Access RSpec-assigned instance variables in view classes (Thanks [@kianw](https://github.com/kianw))
+
+## 1.0.2 (2013-05-10)
 
 * Change autoload paths to an array of Strings instead of Pathnames, for greater compatibility.
 
-# 1.0.1
+## 1.0.1 (2013-05-07)
 
 * Fix a regression in mustache layout handling.
 
-# 1.0.0
+## 1.0.0 (2012-11-29)
 
 * Overhauled Mustache template engine. If you wish to have Mustache drive your entire template stack, you can invert control to it.
 * Fixed a bunch of problems with Handlebars access to the view namespace for helpers, etc.
@@ -16,11 +22,11 @@ Backwards compatibility should be fine; any regressions are bugs and should be r
 
 Huge thanks to all contributors!
 
-# 0.9.1
+## 0.9.1
 
 * soften our hardcore stance on missing properties.
 
-# 0.9.0
+## 0.9.0
 
 /!\ /!\ Breaking Changes.
 
@@ -30,14 +36,14 @@ Huge thanks to all contributors!
 
 There's some code duplication that should be crushed out before 1.0.
 
-# 0.2.2
+## 0.2.2
 
 * Saner, consistent handling of template extensions: partials and full templates both use configured value at `Stache.template_extension`. Thanks @ajacksified!
 
-# 0.2.1
+## 0.2.1
 
 * Addresses #9: fix 'incompatible character encodings' error
 
-# 0.2.0
+## 0.2.0
 
 * Patch to properly reraise NameError/LoadError that occurs upon loading a Stache::View

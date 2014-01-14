@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.0.3 (master)
+## 1.0.3 (2014-01-14)
 
 * Access RSpec-assigned instance variables in view classes (Thanks [@kianw](https://github.com/kianw))
 * Rails4 compatibility at long last!

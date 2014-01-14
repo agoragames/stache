@@ -1,8 +1,12 @@
 # stache
 
-A Rails 3.x compatible Mustache/Handlebars Template Handler, with support for partials and a couple extra niceties to make sharing the raw templates with client-side javascript a little easier. It's a one-stop shop for your facial-hair-inspired templates.
+A Rails 4.x compatible Mustache/Handlebars Template Handler, with support for partials and a couple extra niceties to make sharing the raw templates with client-side javascript a little easier. It's a one-stop shop for your facial-hair-inspired templates.
 
 [![Build Status](https://secure.travis-ci.org/agoragames/stache.png)](http://travis-ci.org/agoragames/stache)
+
+## 1.0.3
+
+If you want Rails4, you'll have to use 1.0.3.
 
 ## 1.0.0
 
@@ -94,8 +98,8 @@ You can subclass `Stache::Handlebars::View` in the same way as mustache above, b
 
 ## View Specs
 
-Yes, you can write view specs using RSpec for your Stache templates! You can use RSpec's `assign` method to 
-assign values to view instance variables, which will then be be available to the Stache view, either as 
+Yes, you can write view specs using RSpec for your Stache templates! You can use RSpec's `assign` method to
+assign values to view instance variables, which will then be be available to the Stache view, either as
 instance variables, or via an accessor. Any instance variables defined in the RSpec example will also be
 similarly available, so
 
@@ -143,12 +147,6 @@ View:
 ## Of Note
 
 This is code that was ripped out of a research project. It probably has some rough edges.
-
-TODO:
-
-* more and better integration tests
-* automated tests across different rails versions
-* other helpers, etc, as desired
 
 ## Thanks to
 

@@ -13,6 +13,7 @@ doc
 .yardoc
 
 spec/dummy/log/
+spec/dummy/tmp/
 
 # Have editor/IDE/OS specific files you need to ignore? Consider using a global gitignore: 
 #

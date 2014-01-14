@@ -1,12 +1,12 @@
 # stache
 
-A Rails 4.x compatible Mustache/Handlebars Template Handler, with support for partials and a couple extra niceties to make sharing the raw templates with client-side javascript a little easier. It's a one-stop shop for your facial-hair-inspired templates.
+A Rails 3.x and Rails 4.x compatible Mustache/Handlebars template handler, with support for partials and a couple extra niceties to make sharing the raw templates with client-side javascript a little easier. It's a one-stop shop for your facial-hair-inspired templates.
 
 [![Build Status](https://secure.travis-ci.org/agoragames/stache.png)](http://travis-ci.org/agoragames/stache)
 
 ## 1.0.3
 
-If you want Rails4, you'll have to use 1.0.3.
+If you want Rails 4, you'll have to use 1.0.3.
 
 ## 1.0.0
 

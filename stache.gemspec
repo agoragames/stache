@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors = ['Matt Wilson']
   s.email = 'mhw@hypomodern.com'
   s.homepage = 'http://github.com/agoragames/stache'
-  s.summary = %Q{Configurable Mustache Handler and Helpers for Rails}
-  s.description = %Q{A rails 3.x compatible template handler, configurable.}
+  s.summary = %Q{A Rails 3.x and Rails 4.x compatible Mustache/Handlebars template handler}
+  s.description = %Q{A Rails 3.x and Rails 4.x compatible Mustache/Handlebars template handler}
   s.license = 'MIT'
   s.extra_rdoc_files = [
     'LICENSE',

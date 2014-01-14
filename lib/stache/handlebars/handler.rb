@@ -36,7 +36,7 @@ module Stache
 
           template = handlebars.compile('#{template.source.gsub(/'/, "\\\\'")}');
           vars = {}
-          partial_renderer = @view_renderer.send(:_partial_renderer)
+          partial_renderer = PartialRenderer.new(lookup_context)
           vars.merge!(@_assigns)
           vars.merge!(partial_renderer.instance_variable_get('@locals') || {})
           options = partial_renderer.instance_variable_get('@options')

@@ -41,7 +41,7 @@ describe StacheController do
     get :with_asset_helpers
     assert_response 200
 
-    response.body.should =~ /Here's an image_path=\/assets\/image\.png/
+    response.body.should =~ /Here's an image_path=\/images\/image\.png/
     response.body.should =~ /link href="\/assets\/test\.css"/
   end
 

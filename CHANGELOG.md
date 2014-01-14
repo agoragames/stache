@@ -3,6 +3,8 @@
 ## 1.0.3 (master)
 
 * Access RSpec-assigned instance variables in view classes (Thanks [@kianw](https://github.com/kianw))
+* Rails4 compatibility at long last!
+* Ruby2 required for development, as it is preferred by rails4.
 
 ## 1.0.2 (2013-05-10)
 

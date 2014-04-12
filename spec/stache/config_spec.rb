@@ -28,6 +28,15 @@ describe "Stache::Config" do
     it "sets a default value for wrapper_module_name" do
       Stache.send(:wrapper_module_name).should be_nil
     end
+
+    it "sets up an attribute named include_path_in_id" do
+      attr = :include_path_in_id
+      should_set_up_attr_accessor_for(attr)
+    end
+
+    it "sets a default value for include_path_in_id" do
+      Stache.send(:include_path_in_id).should be_false
+    end
   end
 
   describe ".configure" do

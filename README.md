@@ -27,17 +27,24 @@ Install the gem. If you want to override any of the configuration options (see `
 
 ```ruby
 Stache.configure do |c|
-  c.template_base_path = "..."  # this is probably the one you'll want to change
-                                # it defaults to app/templates
+  # This is probably the one you'll want to change
+  # it defaults to app/templates
+  c.template_base_path = "..."
 
-  c.wrapper_module_name = "..." # this lets you indicate the name of a module that
-                                # namespaces all your view classes, useful, if you
-                                # have a naming conflict, such as with a mailer
+  # This lets you indicate the name of a module that
+  # namespaces all your view classes, useful, if you
+  # have a naming conflict, such as with a mailer
+  c.wrapper_module_name = "..."
 
   # N.B. YOU MUST TELL STACHE WHICH TO USE:
   c.use :mustache
   # and / or
   c.use :handlebars
+
+  # Determine if template path should be included in script's
+  # id tag as a underscored prefix. It can be overwritten by
+  # an id param in `template_include_path` method.
+  c.include_path_in_id = false
 end
 
 # or if the block style ain't yer thang, just:

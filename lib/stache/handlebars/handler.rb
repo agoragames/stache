@@ -38,7 +38,7 @@ module Stache
           vars = {}
           partial_renderer = PartialRenderer.new(lookup_context)
           vars.merge!(@_assigns)
-          vars.merge!(partial_renderer.instance_variable_get('@locals') || {})
+          vars.merge!(local_assigns || {})
           options = partial_renderer.instance_variable_get('@options')
           vars.merge!(options[:context] || {}) if options
 
@@ -82,6 +82,11 @@ module Stache
             raise e
           end
         end
+      end
+
+    end
+  end
+end    end
       end
 
     end

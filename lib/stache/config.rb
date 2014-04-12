@@ -11,7 +11,7 @@ module Stache
   #   use :mustache # or :handlebars
   # end
   module Config
-    attr_accessor :template_base_path, :shared_path, :wrapper_module_name
+    attr_accessor :template_base_path, :shared_path, :wrapper_module_name, :include_path_in_id
 
     def configure
       yield self
@@ -31,6 +31,14 @@ module Stache
 
     def wrapper_module_name
       @wrapper_module_name ||= nil
+    end
+
+    def include_path_in_id
+      @include_path_in_id ||= false
+    end
+
+    def include_path_in_id= boolean
+      @include_path_in_id = boolean
     end
 
     def use template_engine

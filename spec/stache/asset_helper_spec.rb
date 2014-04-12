@@ -61,6 +61,41 @@ describe Stache::AssetHelper do
     it "raises if it cannot find the template" do
       lambda { helper.template_include_tag("arrrgh") }.should raise_error(ActionView::MissingTemplate)
     end
+
+    context "when config.include_path_in_id is set to true" do
+      before do
+        Stache.include_path_in_id = true
+
+        helper.lookup_context.should_receive(:find)
+          .with(nested_path, [], true, [], anything)
+          .and_return(TemplateStub.new("{{ awyeah }}"))
+      end
+
+      let(:nested_path) { 'nested/path/to/oh_herro' }
+
+      it "renders a script tag id with template path included (underscored)" do
+        helper.template_include_tag(nested_path)
+          .should == "<script id=\"nested_path_to_oh_herro_template\" type=\"text/html\">{{ awyeah }}</script>"
+      end
+
+      context "when template_base_path is set" do
+        before do
+          Stache.template_base_path = 'widgets/'
+        end
+
+        it "renders a script tag id without a template path included" do
+          helper.template_include_tag(nested_path)
+            .should == "<script id=\"nested_path_to_oh_herro_template\" type=\"text/html\">{{ awyeah }}</script>"
+        end
+      end
+
+      context "when id option is set" do
+        it "renders a script tag with given id and without a full path" do
+          helper.template_include_tag(nested_path, :id => 'oh_herro_tmpl')
+            .should == "<script id=\"oh_herro_tmpl\" type=\"text/html\">{{ awyeah }}</script>"
+        end
+      end
+    end
   end
 
 

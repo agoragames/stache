@@ -14,7 +14,7 @@ module Stache
         end
 
         template = template_finder.call(true) rescue template_finder.call(false)
-        template_id = source.split("/").last
+        template_id = (Stache.include_path_in_id) ? source.gsub("/", '_') : source.split('/').last
 
         options = options.reverse_merge(:type => "text/html", :id => "#{template_id.dasherize.underscore}_template")
         content_tag(:script, template.source.html_safe, options)

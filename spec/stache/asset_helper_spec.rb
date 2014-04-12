@@ -71,6 +71,10 @@ describe Stache::AssetHelper do
           .and_return(TemplateStub.new("{{ awyeah }}"))
       end
 
+      after do
+        Stache.include_path_in_id = false
+      end
+
       let(:nested_path) { 'nested/path/to/oh_herro' }
 
       it "renders a script tag id with template path included (underscored)" do

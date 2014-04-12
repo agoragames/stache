@@ -41,9 +41,9 @@ Stache.configure do |c|
   # and / or
   c.use :handlebars
 
-  # Determine if template path should be included in script's
-  # id tag as a underscored prefix. It can be overwritten by
-  # an id param in `template_include_path` method.
+  # Set it to true if template path should be included in
+  # script's id tag as a underscored prefix. It can be
+  # overwritten by an id param in `#template_include_path`.
   c.include_path_in_id = false
 end
 

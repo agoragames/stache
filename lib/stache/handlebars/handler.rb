@@ -86,9 +86,4 @@ module Stache
 
     end
   end
-end    end
-      end
-
-    end
-  end
 end

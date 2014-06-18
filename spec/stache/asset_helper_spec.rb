@@ -46,6 +46,12 @@ describe Stache::AssetHelper do
 
       helper.template_include_tag(:oh_herro).should == "<script id=\"oh_herro_template\" type=\"text/html\">{{ awyeah }}</script>"
     end
+    it "renders a script tag with the template contents for the passed in symbols" do
+      helper.lookup_context.should_receive(:find).with(:oh_herro, [], true, [], anything).and_return(TemplateStub.new("{{ awyeah }}"))
+      helper.lookup_context.should_receive(:find).with(:oh_hai, [], true, [], anything).and_return(TemplateStub.new("{{ awyes }}"))
+
+      helper.template_include_tag(:oh_herro, :oh_hai).should == "<script id=\"oh_herro_template\" type=\"text/html\">{{ awyeah }}</script>\n<script id=\"oh_hai_template\" type=\"text/html\">{{ awyes }}</script>"
+    end
     it "renders a script tag with the template contents and given id" do
       helper.lookup_context.should_receive(:find).with('widgets/oh_herro', [], true, [], anything).and_return(TemplateStub.new("{{ awyeah }}"))
 

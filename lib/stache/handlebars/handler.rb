@@ -34,7 +34,7 @@ module Stache
             content_for(:layout)
           end
 
-          template = handlebars.compile('#{template.source.gsub(/'/, "\\\\'")}');
+          template = handlebars.compile('#{template.source.gsub(/'/, "\\\\'")}')
           vars = {}
           partial_renderer = PartialRenderer.new(lookup_context)
           vars.merge!(@_assigns)

@@ -90,7 +90,7 @@ describe Stache::AssetHelper do
 
       it "renders a script tag id with template path included (underscored)" do
         helper.template_include_tag(nested_path)
-          .should == "<script id=\"nested_path_to_oh_herro_template\" type=\"text/html\">{{ awyeah }}</script>"
+          .should == "<script id=\"nested_path_to_oh_herro\" type=\"text/html\">{{ awyeah }}</script>"
       end
 
       context "when template_base_path is set" do
@@ -100,7 +100,7 @@ describe Stache::AssetHelper do
 
         it "renders a script tag id without a template path included" do
           helper.template_include_tag(nested_path)
-            .should == "<script id=\"nested_path_to_oh_herro_template\" type=\"text/html\">{{ awyeah }}</script>"
+            .should == "<script id=\"nested_path_to_oh_herro\" type=\"text/html\">{{ awyeah }}</script>"
         end
       end
 

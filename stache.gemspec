@@ -28,8 +28,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'mustache'
   s.add_development_dependency 'handlebars', '~>0.4.0'
   s.add_development_dependency 'rails', '~>4.0.0'
-  s.add_development_dependency 'rspec'
-  s.add_development_dependency 'rspec-rails'
+  s.add_development_dependency 'rspec', '~>2.99.0'
+  s.add_development_dependency 'rspec-rails', '~>2.99.0'
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'rake'
 end

@@ -10,8 +10,8 @@ describe Stache::Util do
       Stache::Util.av_template_class("Foo").should == ActionView::TemplateFoo
     end
   end
-  
+
   describe ".needs_compilable?" do
-    pending "need to figure out some way to test this across different rails versions..."
+    skip "need to figure out some way to test this across different rails versions..."
   end
 end

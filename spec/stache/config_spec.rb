@@ -35,7 +35,7 @@ describe "Stache::Config" do
     end
 
     it "sets a default value for include_path_in_id" do
-      Stache.send(:include_path_in_id).should be_false
+      Stache.send(:include_path_in_id).should be false
     end
   end
 

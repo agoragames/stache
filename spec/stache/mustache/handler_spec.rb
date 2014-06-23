@@ -3,10 +3,10 @@ require 'spec_helper'
 describe Stache::Mustache::Handler do
   # ERBHandler = ActionView::Template::Handlers::ERB.new
   # def new_template(body = "<%= hello %>", details = {})
-  #   ActionView::Template.new(body, "hello template", ERBHandler, {:virtual_path => "hello"}.merge!(details))
+  #   ActionView::Template.new(body, "hello template", ERBHandler, {virtual_path: "hello"}.merge!(details))
   # end
   before do
-    @template = ActionView::Template.new("{{body}}", "hello mustache", Stache::Mustache::Handler, { :virtual_path => "hello_world"})
+    @template = ActionView::Template.new("{{body}}", "hello mustache", Stache::Mustache::Handler, { virtual_path: "hello_world"})
     @handler = Stache::Mustache::Handler.new
   end
 

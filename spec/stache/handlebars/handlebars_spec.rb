@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Stache::Handlebars::Handler do
   before do
-    @template = ActionView::Template.new("{{body}}", "hello handlebars", Stache::Handlebars::Handler, { :virtual_path => "hello_world"})
+    @template = ActionView::Template.new("{{body}}", "hello handlebars", Stache::Handlebars::Handler, { virtual_path: "hello_world"})
     @handler = Stache::Handlebars::Handler.new
   end
 

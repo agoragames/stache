@@ -52,7 +52,7 @@ describe StacheController do
     response.body.should == "Wrap\nThis is wrapped in a layout\n\nEndWrap\n"
   end
 
-  it "can get render a mustache with rails helpers", :type => :stache do
+  it "can get render a mustache with rails helpers", type: :stache do
     get :helper
     assert_response 200
 

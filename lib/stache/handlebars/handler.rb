@@ -46,7 +46,7 @@ module Stache
             search_path = '#{template.virtual_path}'.split("/")[0..-2]
             file = (search_path + [name]).join("/")
             finder = lambda do |partial|
-              self.lookup_context.find(file, [], partial, [], {:formats => [:html]})
+              self.lookup_context.find(file, [], partial, [], {formats: [:html]})
             end
             template = finder.call(false) rescue finder.call(true)
 

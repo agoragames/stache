@@ -55,12 +55,12 @@ describe Stache::AssetHelper do
     it "renders a script tag with the template contents and given id" do
       helper.lookup_context.should_receive(:find).with('widgets/oh_herro', [], true, [], anything).and_return(TemplateStub.new("{{ awyeah }}"))
 
-      helper.template_include_tag("widgets/oh_herro", :id => 'oh_herro_tmpl').should == "<script id=\"oh_herro_tmpl\" type=\"text/html\">{{ awyeah }}</script>"
+      helper.template_include_tag("widgets/oh_herro", id: 'oh_herro_tmpl').should == "<script id=\"oh_herro_tmpl\" type=\"text/html\">{{ awyeah }}</script>"
     end
     it "renders a script tag with the template contents and given options" do
       helper.lookup_context.should_receive(:find).with('widgets/oh_herro', [], true, [], anything).and_return(TemplateStub.new("{{ awyeah }}"))
 
-      helper.template_include_tag("widgets/oh_herro", :data => {:engine => 'mustache'}).
+      helper.template_include_tag("widgets/oh_herro", data: {engine: 'mustache'}).
         should == "<script data-engine=\"mustache\" id=\"oh_herro\" type=\"text/html\">{{ awyeah }}</script>"
     end
     it "will find first by partial and later by non-partial" do
@@ -106,7 +106,7 @@ describe Stache::AssetHelper do
 
       context "when id option is set" do
         it "renders a script tag with given id and without a full path" do
-          helper.template_include_tag(nested_path, :id => 'oh_herro_tmpl')
+          helper.template_include_tag(nested_path, id: 'oh_herro_tmpl')
             .should == "<script id=\"oh_herro_tmpl\" type=\"text/html\">{{ awyeah }}</script>"
         end
       end

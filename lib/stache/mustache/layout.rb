@@ -24,7 +24,7 @@ module Stache
         # stick that rendered template as :yield into the layout template
         # (which will be combined with the current context)
         if (!ctx.is_a?(::Mustache::Context))
-          rendered_template = super(layout_template, :yield => rendered_template)
+          rendered_template = super(layout_template, yield: rendered_template)
         end
 
         rendered_template

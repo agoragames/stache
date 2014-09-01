@@ -24,6 +24,9 @@ module Stache
 
         template_is_class = template.source.match(/module/) ? true : false
 
+        # Caching key
+        template_id = "#{template.identifier.to_s}#{template.updated_at.to_i}"
+
         # Return a string that will be eval'd in the context of the ActionView, ugly, but it works.
         <<-MUSTACHE
           mustache = ::#{mustache_class}.new
@@ -37,7 +40,6 @@ module Stache
             template_source = '#{template.source.gsub(/'/, "\\\\'")}'
           end
 
-          mustache.template = template_source
           mustache.virtual_path = '#{template.virtual_path.to_s}'
           mustache[:yield] = content_for(:layout)
           mustache.context.update(local_assigns)
@@ -63,7 +65,25 @@ module Stache
             attr_reader *variables.map { |name| name.sub(/^@/, '').to_sym }
           end
 
-          mustache.render.html_safe
+          # Setup cache
+          unless self.class.instance_variable_defined?(:@mustache_template_cache)
+            self.class.instance_variable_set(:@mustache_template_cache, {})
+          end
+          cache = self.class.instance_variable_get(:@mustache_template_cache)
+
+          # Try to set template from cache, otherwise use template source
+          template_cached   = cache['#{template_id}']
+          mustache.template = template_cached || template_source
+
+          # Render - this will also compile the template
+          compiled = mustache.render.html_safe
+
+          # Store now compiled template
+          unless template_cached
+            cache['#{template_id}'] = mustache.template
+          end
+
+          compiled
         MUSTACHE
       end
 

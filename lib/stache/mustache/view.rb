@@ -5,7 +5,7 @@ module Stache
     #
     # A Convienent Base Class for the views. Subclass this for autoloading magic with your templates.
     class View < ::Mustache
-      attr_accessor :view, :template, :virtual_path
+      attr_accessor :view, :virtual_path
 
       def method_missing(method, *args, &block)
         view.send(method, *args, &block)

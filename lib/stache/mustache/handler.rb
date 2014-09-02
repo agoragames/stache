@@ -22,7 +22,15 @@ module Stache
         # only for templates containing the word `module`, and reads the template again from the file
         # system.
 
-        template_is_class = template.source.match(/module/) ? true : false
+        template_source = if template.source.match(/module/)
+          template_name = template.virtual_path.to_s
+          file = Dir.glob(File.join(::Stache.template_base_path, template_name + "\.*" + ::Mustache.template_extension)).first
+          File.read(file)
+        else
+          template.source.gsub(/'/, "\\\\'")
+        end
+
+        virtual_path = template.virtual_path.to_s
 
         # Caching key
         template_id = "#{template.identifier.to_s}#{template.updated_at.to_i}"
@@ -32,23 +40,12 @@ module Stache
           mustache = ::#{mustache_class}.new
           mustache.view = self
 
-          if #{template_is_class}
-            template_name = "#{template.virtual_path.to_s}"
-            file = Dir.glob(File.join(::Stache.template_base_path, template_name + "\.*" + mustache.template_extension)).first
-            template_source = File.read(file)
-          else
-            template_source = '#{template.source.gsub(/'/, "\\\\'")}'
-          end
-
-          mustache.virtual_path = '#{template.virtual_path.to_s}'
+          mustache.virtual_path = '#{virtual_path}'
           mustache[:yield] = content_for(:layout)
           mustache.context.update(local_assigns)
-          variables = controller.instance_variable_names
-          variables -= %w[@template]
-
-          if controller.respond_to?(:protected_instance_variables)
-            variables -= controller.protected_instance_variables
-          end
+          variables = controller.instance_variables
+          variables.delete(:@template)
+          variables -= controller.class.protected_instance_variables.to_a
 
           variables.each do |name|
             mustache.instance_variable_set(name, controller.instance_variable_get(name))
@@ -61,8 +58,8 @@ module Stache
 
           # Declaring an +attr_reader+ for each instance variable in the
           # Stache::Mustache::View subclass makes them available to your templates.
-          mustache.class.class_eval do
-            attr_reader *variables.map { |name| name.sub(/^@/, '').to_sym }
+          mustache.singleton_class.class_eval do
+            attr_reader *variables.map { |name| name.to_s.sub(/^@/, '').to_sym }
           end
 
           # Setup cache
@@ -73,7 +70,7 @@ module Stache
 
           # Try to set template from cache, otherwise use template source
           template_cached   = cache['#{template_id}']
-          mustache.template = template_cached || template_source
+          mustache.template = template_cached || '#{template_source}'
 
           # Render - this will also compile the template
           compiled = mustache.render.html_safe

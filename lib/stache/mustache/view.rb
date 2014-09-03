@@ -28,8 +28,12 @@ module Stache
           end
         end
 
-        template = template_finder.call(true) rescue template_finder.call(false)
-        template.source
+        # Try to resolve the partial template
+        begin
+          template_finder.call(true)
+        rescue ActionView::MissingTemplate
+          template_finder.call(false)
+        end.source
       end
 
       def helpers

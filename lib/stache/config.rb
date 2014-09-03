@@ -11,7 +11,7 @@ module Stache
   #   use :mustache # or :handlebars
   # end
   module Config
-    attr_accessor :template_base_path, :shared_path, :wrapper_module_name, :include_path_in_id
+    attr_accessor :template_base_path, :shared_path, :wrapper_module_name, :include_path_in_id, :template_cache
 
     def configure
       yield self
@@ -39,6 +39,14 @@ module Stache
 
     def include_path_in_id= boolean
       @include_path_in_id = boolean
+    end
+
+    def template_cache
+      @template_cache ||= ActiveSupport::Cache::NullStore.new
+    end
+
+    def template_cache= cache
+      @template_cache = cache
     end
 
     def use template_engine

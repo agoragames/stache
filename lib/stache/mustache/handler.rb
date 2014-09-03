@@ -62,22 +62,16 @@ module Stache
             attr_reader *variables.map { |name| name.to_s.sub(/^@/, '').to_sym }
           end
 
-          # Setup cache
-          unless self.class.instance_variable_defined?(:@mustache_template_cache)
-            self.class.instance_variable_set(:@mustache_template_cache, ActiveSupport::Cache::MemoryStore.new)
-          end
-          cache = self.class.instance_variable_get(:@mustache_template_cache)
-
-          # Try to set template from cache, otherwise use template source
-          template_cached   = cache.read(:'#{template_id}', :raw => true)
+          # Try to get template from cache, otherwise use template source
+          template_cached   = ::Stache.template_cache.read(:'#{template_id}', :raw => true)
           mustache.template = template_cached || Stache::Mustache::CachedTemplate.new('#{template_source}')
 
           # Render - this will also compile the template
           compiled = mustache.render.html_safe
 
-          # Store now compiled template
+          # Store the now compiled template
           unless template_cached
-            cache.write(:'#{template_id}', mustache.template, :raw => true)
+            ::Stache.template_cache.write(:'#{template_id}', mustache.template, :raw => true)
           end
 
           compiled

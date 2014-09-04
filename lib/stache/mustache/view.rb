@@ -15,24 +15,23 @@ module Stache
         super(method, include_private) || view.respond_to?(method, include_private)
       end
 
+      def virtual_path=(path)
+        @virtual_path = path
+        #
+        # Since the addition to the lookup_context only depends on the virtual_path,
+        # do it here instead of inside the partial.
+        #
+        current_dir   = Stache.template_base_path.join(path.split("/")[0..-2].join("/"))
+        lookup_context.view_paths << current_dir unless lookup_context.view_paths.include?(current_dir)
+      end
+
       # Redefine where Stache::View templates locate their partials
       def partial(name)
-        current_dir = Stache.template_base_path.join( self.virtual_path.split("/")[0..-2].join("/") )
-        lookup_context.view_paths += [current_dir]
-
-        template_finder = lambda do |partial|
-          if ActionPack::VERSION::MAJOR == 3 && ActionPack::VERSION::MINOR < 2
-            lookup_context.find(name, [], partial)
-          else # Rails 3.2 and higher
-            lookup_context.find(name, [], partial, [], { formats: [:html], handlers: [:mustache] })
-          end
-        end
-
         # Try to resolve the partial template
         begin
-          template_finder.call(true)
+          template_finder(name, true)
         rescue ActionView::MissingTemplate
-          template_finder.call(false)
+          template_finder(name, false)
         end.source
       end
 
@@ -47,6 +46,16 @@ module Stache
         end
         alias :h :helpers
       end
+
+    protected
+      def template_finder(name, partial)
+        if ActionPack::VERSION::MAJOR == 3 && ActionPack::VERSION::MINOR < 2
+          lookup_context.find(name, [], partial)
+        else # Rails 3.2 and higher
+          lookup_context.find(name, [], partial, [], { formats: [:html], handlers: [:mustache] })
+        end
+      end
+
     end
   end
 end

@@ -26,7 +26,7 @@ module Stache
       # Store the template by returning the compiled_source
       #
       def _dump(level)
-        @compiled_source
+        compile
       end
 
       #

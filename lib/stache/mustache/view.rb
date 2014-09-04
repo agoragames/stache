@@ -7,6 +7,11 @@ module Stache
     class View < ::Mustache
       attr_accessor :view, :virtual_path
 
+      def context
+        # Use the faster context instead of the original mustache one
+        @context ||= FasterContext.new(self)
+      end
+
       def method_missing(method, *args, &block)
         view.send(method, *args, &block)
       end
@@ -27,12 +32,24 @@ module Stache
 
       # Redefine where Stache::View templates locate their partials
       def partial(name)
-        # Try to resolve the partial template
-        begin
-          template_finder(name, true)
-        rescue ActionView::MissingTemplate
-          template_finder(name, false)
-        end.source
+        cache_key = :"#{virtual_path}/#{name}"
+
+        # Try to resolve template from cache
+        template_cached = ::Stache.template_cache.read(cache_key, :namespace => :partials, :raw => true)
+        curr_template   = template_cached || Stache::Mustache::CachedTemplate.new(
+          begin # Try to resolve the partial template
+            template_finder(name, true)
+          rescue ActionView::MissingTemplate
+            template_finder(name, false)
+          end.source
+        )
+
+        # Store the template
+        unless template_cached
+          ::Stache.template_cache.write(cache_key, curr_template, :namespace => :partials, :raw => true)
+        end
+
+        curr_template
       end
 
       def helpers

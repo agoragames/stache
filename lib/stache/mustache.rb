@@ -1,6 +1,7 @@
 require "stache/mustache/handler"
 require "stache/mustache/layout"
 require "stache/mustache/cached_template"
+require "stache/mustache/faster_context"
 
 module Stache
   module Mustache; end

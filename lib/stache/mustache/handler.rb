@@ -22,15 +22,8 @@ module Stache
         # only for templates containing the word `module`, and reads the template again from the file
         # system.
 
-        template_source = if template.source.match(/module/)
-          template_name = template.virtual_path.to_s
-          file = Dir.glob(File.join(::Stache.template_base_path, template_name + "\.*" + ::Mustache.template_extension)).first
-          File.read(file)
-        else
-          template.source.gsub(/'/, "\\\\'")
-        end
-
-        virtual_path = template.virtual_path.to_s
+        template_is_class = template.source.match(/module/) ? true : false
+        virtual_path      = template.virtual_path.to_s
 
         # Caching key
         template_id = "#{template.identifier.to_s}#{template.updated_at.to_i}"
@@ -63,15 +56,23 @@ module Stache
           end
 
           # Try to get template from cache, otherwise use template source
-          template_cached   = ::Stache.template_cache.read(:'#{template_id}', :raw => true)
-          mustache.template = template_cached || Stache::Mustache::CachedTemplate.new('#{template_source}')
+          template_cached   = ::Stache.template_cache.read(:'#{template_id}', :namespace => :templates, :raw => true)
+          mustache.template = template_cached || Stache::Mustache::CachedTemplate.new(
+            if #{template_is_class}
+              template_name = "#{virtual_path}"
+              file = Dir.glob(File.join(::Stache.template_base_path, template_name + "\.*" + mustache.template_extension)).first
+              File.read(file)
+            else
+              '#{template.source.gsub(/'/, "\\\\'")}'
+            end
+          )
 
           # Render - this will also compile the template
           compiled = mustache.render.html_safe
 
           # Store the now compiled template
           unless template_cached
-            ::Stache.template_cache.write(:'#{template_id}', mustache.template, :raw => true)
+            ::Stache.template_cache.write(:'#{template_id}', mustache.template, :namespace => :templates, :raw => true)
           end
 
           compiled

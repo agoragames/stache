@@ -81,4 +81,43 @@ describe StacheController do
       Stache.wrapper_module_name = nil
     end
   end
+
+  describe "cache usage" do
+    before do
+      Stache.template_cache = ActiveSupport::Cache::MemoryStore.new
+    end
+
+    it "fills the cache" do
+      get :index
+      get :index  # Render a second time
+      Stache.template_cache.instance_variable_get(:@data).size.should eq(1) # But should only contain one element
+    end
+
+    it "fills the cache" do
+      get :with_partials
+      get :with_partials  # Render a second time
+      Stache.template_cache.instance_variable_get(:@data).size.should eq(2) # But should only contain two elements (one for template, one for the partial)
+    end
+
+    it "uses the cache" do
+      get :with_partials
+
+      # Setup fake template
+      template = Stache::Mustache::CachedTemplate.new("foo")
+      template.compile
+
+      # Get first entry and manipulate it to be the fake template
+      key = Stache.template_cache.instance_variable_get(:@data).keys.last
+      Stache.template_cache.write(key, template, :raw => true)
+
+      # Now check response if it is the fake template
+      get :with_partials
+      assert_response 200
+      response.body.should == "foo"
+    end
+
+    after do
+      Stache.template_cache = ActiveSupport::Cache::NullStore.new
+    end
+  end
 end

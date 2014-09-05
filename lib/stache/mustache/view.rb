@@ -5,7 +5,12 @@ module Stache
     #
     # A Convienent Base Class for the views. Subclass this for autoloading magic with your templates.
     class View < ::Mustache
-      attr_accessor :view, :template, :virtual_path
+      attr_accessor :view, :virtual_path
+
+      def context
+        # Use the faster context instead of the original mustache one
+        @context ||= FasterContext.new(self)
+      end
 
       def method_missing(method, *args, &block)
         view.send(method, *args, &block)
@@ -15,21 +20,36 @@ module Stache
         super(method, include_private) || view.respond_to?(method, include_private)
       end
 
+      def virtual_path=(path)
+        @virtual_path = path
+        #
+        # Since the addition to the lookup_context only depends on the virtual_path,
+        # do it here instead of inside the partial.
+        #
+        current_dir   = Stache.template_base_path.join(path.split("/")[0..-2].join("/"))
+        lookup_context.view_paths << current_dir unless lookup_context.view_paths.include?(current_dir)
+      end
+
       # Redefine where Stache::View templates locate their partials
       def partial(name)
-        current_dir = Stache.template_base_path.join( self.virtual_path.split("/")[0..-2].join("/") )
-        lookup_context.view_paths += [current_dir]
+        cache_key = :"#{virtual_path}/#{name}"
 
-        template_finder = lambda do |partial|
-          if ActionPack::VERSION::MAJOR == 3 && ActionPack::VERSION::MINOR < 2
-            lookup_context.find(name, [], partial)
-          else # Rails 3.2 and higher
-            lookup_context.find(name, [], partial, [], { formats: [:html], handlers: [:mustache] })
-          end
+        # Try to resolve template from cache
+        template_cached = ::Stache.template_cache.read(cache_key, :namespace => :partials, :raw => true)
+        curr_template   = template_cached || Stache::Mustache::CachedTemplate.new(
+          begin # Try to resolve the partial template
+            template_finder(name, true)
+          rescue ActionView::MissingTemplate
+            template_finder(name, false)
+          end.source
+        )
+
+        # Store the template
+        unless template_cached
+          ::Stache.template_cache.write(cache_key, curr_template, :namespace => :partials, :raw => true)
         end
 
-        template = template_finder.call(true) rescue template_finder.call(false)
-        template.source
+        curr_template
       end
 
       def helpers
@@ -43,6 +63,16 @@ module Stache
         end
         alias :h :helpers
       end
+
+    protected
+      def template_finder(name, partial)
+        if ActionPack::VERSION::MAJOR == 3 && ActionPack::VERSION::MINOR < 2
+          lookup_context.find(name, [], partial)
+        else # Rails 3.2 and higher
+          lookup_context.find(name, [], partial, [], { formats: [:html], handlers: [:mustache] })
+        end
+      end
+
     end
   end
 end

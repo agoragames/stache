@@ -4,19 +4,13 @@ A Rails 3.x and Rails 4.x compatible Mustache/Handlebars template handler, with 
 
 [![Build Status](https://secure.travis-ci.org/agoragames/stache.png)](http://travis-ci.org/agoragames/stache)
 
-## 1.0.3
+## Mustache template caching is in 1.1+
+
+I'm investigating whether or not this is something that can be/needs to be ported to handlebars.
+
+## Rails 4 Support is in 1.0.3+
 
 If you want Rails 4, you'll have to use 1.0.3.
-
-## 1.0.0
-
-Major overhaul to the mustache side of things. Backwards compatibility *should* be intact. If not, file a bug and it will get taken care of.
-
-Handlebars can also handle application layouts, and you can use subclasses of Stache::Handlebars::View to define view-specific helpers now.
-
-## Notice Of Breaking Changes
-
-Stache 0.9.x adds handlebars support. In the process, the public API has changed *ever-so-slightly*. Specifically, you'll need to require the mustache or handlebars gems on your own, **and** you'll need to tell Stache which one (or both!) you want to use. Add `config.use :mustache` to your initializer.
 
 ## Usage
 
@@ -45,10 +39,16 @@ Stache.configure do |c|
   # script's id tag as a underscored prefix. It can be
   # overwritten by an id param in `#template_include_tag`.
   c.include_path_in_id = false
+
+  # Caching (new in 1.1.0, Mustache-only for now)
+  # Any ActiveSupport::Cache should work fine.
+  # If you enable this in development, you will lose automagical template reloading!
+  c.template_cache = ActiveSupport::Cache::MemoryStore.new if Rails.env.production?
 end
 
 # or if the block style ain't yer thang, just:
 Stache.template_base_path = File.join(Rails.root, "app", "şablon")
+Stache.template_cache = ActiveSupport::Cache::MemoryStore.new if Rails.env.production?
 ```
 
 There is as of right now one provided helper, `template_include_tag`. Give it the name of a partial and it will write it raw to a script block.
@@ -177,8 +177,10 @@ So: thanks a ton to those guys.
 * [zombor](https://github.com/zombor) contributed an overhaul to the Mustache renderer that puts Mustache classes themselves in control of the render chain, not Rails.
 * [kategengler](https://github.com/kategengler) contributed a patch to allow folks to specify a namespace for their view objects.
 * [joker1007](https://github.com/joker1007) contributed a patch making the autoload paths setup more broadly compatible.
+* [kianw](https://github.com/kianw) contributed a patch making RSpec a little easier to use.
+* [MarkusHarmsen](https://github.com/MarkusHarmsen) added Mustache caching, leading to HUGE performance increases. Thanks!
 
-Thanks a ton to all of the contributors as well. This would never have grown beyond a mediocre tool that rendered partials without their help!
+Thanks a ton to all of the contributors, equally. This would never have grown beyond a mediocre tool that rendered partials without their help!
 
 ## Note on Patches/Pull Requests
 

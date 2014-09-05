@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.1.0 (2014-09-05)
+
+* Overhaul of Stache::Mustache rendering by [@MarkusHarmsen](https://github.com/MarkusHarmsen) brings caching, and with it, 200-300% rendering performance enhancements. Thanks!
+
 ## 1.0.3 (2014-01-14)
 
 * Access RSpec-assigned instance variables in view classes (Thanks [@kianw](https://github.com/kianw))

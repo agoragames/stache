@@ -93,7 +93,7 @@ module Stache
           return Stache::Mustache::View
         end
 
-        const_name = ActiveSupport::Inflector.camelize(template.virtual_path.to_s)
+        const_name = ActiveSupport::Inflector.camelize(ActiveSupport::Inflector.underscore(template.virtual_path.to_s))
         const_name = "#{Stache.wrapper_module_name}::#{const_name}" if Stache.wrapper_module_name
         begin
           const_name.constantize

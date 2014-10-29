@@ -12,7 +12,7 @@ I'm investigating whether or not this is something that can be/needs to be porte
 
 If you want Rails 4, you'll have to use 1.0.3.
 
-## Usage
+## Installation
 
     gem "mustache" # or "handlebars"
     gem "stache"
@@ -51,7 +51,15 @@ Stache.template_base_path = File.join(Rails.root, "app", "şablon")
 Stache.template_cache = ActiveSupport::Cache::MemoryStore.new if Rails.env.production?
 ```
 
-There is as of right now one provided helper, `template_include_tag`. Give it the name of a partial and it will write it raw to a script block.
+## Helper methods
+
+There is currently just one helper method; `template_include_tag`. If you pass it the name of a partial it will write out the contents of the partial in a `script` tag, so that you can access it from within your JavaScript.
+
+```erb
+<%= template_include_tag 'profiles/profile' %>
+```
+
+Specify the template to include with a path *relative to your template base path* (i.e. `profiles/profile` rather than just `profile`).
 
 ## A View Class of your Very Own
 

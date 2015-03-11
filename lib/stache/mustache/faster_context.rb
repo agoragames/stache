@@ -15,7 +15,6 @@ module Stache
         # Call the Mustache's `partial` method and render the result.
         mustache.render(part, self)
       end
-
     end
   end
 end

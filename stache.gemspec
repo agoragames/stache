@@ -26,11 +26,12 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.add_development_dependency 'mustache'
-  s.add_development_dependency 'handlebars', '~>0.4.0'
+  s.add_development_dependency 'handlebars', '~>0.6.0'
   s.add_development_dependency 'rails', '~>4.0.0'
   s.add_development_dependency 'rspec', '~>2.99.0'
   s.add_development_dependency 'rspec-rails', '~>2.99.0'
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'rake'
+  s.add_development_dependency 'test-unit'
 end
 

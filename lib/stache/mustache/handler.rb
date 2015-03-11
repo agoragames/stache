@@ -35,7 +35,7 @@ module Stache
 
           mustache.virtual_path = '#{virtual_path}'
           mustache[:yield] = content_for(:layout)
-          mustache.context.update(local_assigns)
+          mustache.context.push(local_assigns)
           variables = controller.instance_variables
           variables.delete(:@template)
           variables -= controller.class.protected_instance_variables.to_a

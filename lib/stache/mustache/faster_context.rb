@@ -15,8 +15,6 @@ module Stache
         # Call the Mustache's `partial` method and render the result.
         mustache.render(part, self)
       end
-
-      alias_method :update, :push
     end
   end
 end

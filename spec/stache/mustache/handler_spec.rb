@@ -16,6 +16,12 @@ describe Stache::Mustache::Handler do
       @handler.mustache_class_from_template(@template).should == HelloWorld
       Object.send(:remove_const, :HelloWorld)
     end
+    it "handles templates with dashes in the filename" do
+      class HelloWorld < Stache::Mustache::View; end
+      @template.stub(:virtual_path).and_return 'hello-world'
+      @handler.mustache_class_from_template(@template).should == HelloWorld
+      Object.send(:remove_const, :HelloWorld)
+    end
     it "is clever about folders and such" do
       @template.stub(:virtual_path).and_return("profiles/index")
       module Profiles; class Index < Stache::Mustache::View; end; end

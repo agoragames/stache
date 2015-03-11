@@ -16,6 +16,7 @@ module Stache
         mustache.render(part, self)
       end
 
+      alias_method :update, :push
     end
   end
 end

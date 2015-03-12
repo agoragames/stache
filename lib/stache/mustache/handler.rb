@@ -99,7 +99,8 @@ module Stache
           const_name.constantize
         rescue NameError, LoadError => e
           # Only rescue NameError/LoadError concerning our mustache_class
-          if e.message.match(/#{const_name}$/)
+          e_const_name = e.message.match(/ ([^ ]*)$/)[1]
+          if const_name.match(/#{e_const_name}(::|$)/)
             Stache::Mustache::View
           else
             raise e

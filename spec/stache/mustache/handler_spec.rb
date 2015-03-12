@@ -31,6 +31,10 @@ describe Stache::Mustache::Handler do
     it "retuns Stache::Mustache::View if it can't find none" do
       @handler.mustache_class_from_template(@template).should == Stache::Mustache::View
     end
+    it "handles nested paths" do
+      @template.stub(:virtual_path).and_return("profiles/sub/index")
+      @handler.mustache_class_from_template(@template).should == Stache::Mustache::View
+    end
     it "reraises error if loaded mustache_class raises a NameError" do
       @template.stub(:virtual_path).and_return("profiles/index")
       module Profiles; end

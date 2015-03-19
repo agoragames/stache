@@ -192,7 +192,7 @@ end
 
 The `confirm_sign_up.rb` file contains an utterly normal `::Stache::Mustache::View` subclass, e.g. Note that it is nested inside the `UserMailer` class.
 
-```
+```ruby
 class UserMailer
   class ConfirmSignUp < ::Stache::Mustache::View
     def full_name

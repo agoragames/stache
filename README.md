@@ -159,6 +159,49 @@ View:
    end
 ```
 
+## Stache + ActionMailer
+
+Stache should work just fine with `ActionMailer`, with one minor configuration:
+
+Assuming you have a view directory like this:
+
+```
+views/
+  user_mailer/
+    confirm_sign_up.html.mustache
+    confirm_sign_up.rb
+    confirm_sign_up.text.mustache
+```
+
+You'd define your `UserMailer` like so:
+
+```ruby
+class UserMailer < ActionMailer::Base
+  default from: 'notifications@example.com'
+
+  def confirm_sign_up
+    mail(to: 'user@example.com', subject: 'Welcome to StacheMail') do |format|
+      format.text
+      format.html
+    end
+  end
+end
+```
+
+**N.B.** the `do |format|` block is very important: `ActionMailer` will render the code in the `.rb` file as a multipart text/html component, which is probably not what you want unless you really want to show off your View class to all your recipients :).
+
+The `confirm_sign_up.rb` file contains an utterly normal `::Stache::Mustache::View` subclass, e.g. Note that it is nested inside the `UserMailer` class.
+
+```
+class UserMailer
+  class ConfirmSignUp < ::Stache::Mustache::View
+    def full_name
+      ["Bob", "Jones"].join(' ')
+    end
+  end
+end
+```
+
 ## Of Note
 
 This is code that was ripped out of a research project. It probably has some rough edges.

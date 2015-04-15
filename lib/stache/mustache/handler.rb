@@ -58,12 +58,18 @@ module Stache
           # Try to get template from cache, otherwise use template source
           template_cached   = ::Stache.template_cache.read(:'#{template_id}', :namespace => :templates, :raw => true)
           mustache.template = template_cached || Stache::Mustache::CachedTemplate.new(
-            if #{template_is_class}
-              template_name = "#{virtual_path}"
-              file = Dir.glob(File.join(::Stache.template_base_path, template_name + "\.*" + mustache.template_extension)).first
-              File.read(file)
-            else
-              '#{template.source.gsub(/'/, "\\\\'")}'
+            begin 
+              if #{template_is_class}
+                patterns = ApplicationController.view_paths.paths.collect do |path|
+                  path.to_s + "/#{virtual_path}\." + mustache.template_extension
+                end
+                file = Dir.glob(patterns).first
+              end
+              if #{template_is_class} && !file.nil?
+                File.read(file)
+              else
+                '#{template.source.gsub(/'/, "\\\\'")}'
+              end
             end
           )
 

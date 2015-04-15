@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.1.1 (2015-03-19)
+
+* Bugfixes from many new contributors and some expanded test coverage! Thanks very much to all!
+
+Still waiting on handlebars.rb upstream to upgrade off of handlebars 1.3 (the current version is 3) to get handlebars on the same support level as mustache.
+
 ## 1.1.0 (2014-09-05)
 
 * Overhaul of Stache::Mustache rendering by [@MarkusHarmsen](https://github.com/MarkusHarmsen) brings caching, and with it, 200-300% rendering performance enhancements. Thanks!

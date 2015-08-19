@@ -32,24 +32,18 @@ module Stache
 
       # Redefine where Stache::View templates locate their partials
       def partial(name)
-        cache_key = :"#{virtual_path}/#{name}"
-
-        # Try to resolve template from cache
-        template_cached = ::Stache.template_cache.read(cache_key, :namespace => :partials, :raw => true)
-        curr_template   = template_cached || Stache::Mustache::CachedTemplate.new(
-          begin # Try to resolve the partial template
-            template_finder(name, true)
-          rescue ActionView::MissingTemplate
-            template_finder(name, false)
-          end.source
-        )
-
-        # Store the template
-        unless template_cached
-          ::Stache.template_cache.write(cache_key, curr_template, :namespace => :partials, :raw => true)
+        partial_template = begin # Try to resolve the partial template
+          template_finder(name, true)
+        rescue ActionView::MissingTemplate
+          template_finder(name, false)
         end
 
-        curr_template
+        cache_key = :"#{virtual_path}/#{name}#{partial_template.updated_at.to_i}"
+
+        # Try to resolve template from cache
+        ::Stache.template_cache.fetch(cache_key, :namespace => :partials, :raw => true) do
+          CachedTemplate.new(partial_template.source)
+        end
       end
 
       def helpers

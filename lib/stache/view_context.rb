@@ -15,7 +15,11 @@ module Stache
     end
 
     def self.included(source)
-      source.send(:before_filter, :set_current_view_context) if source.respond_to?(:before_filter)
+      if source.respond_to?(:before_action) # Rails 4+
+        source.send(:before_action, :set_current_view_context)
+      elsif source.respond_to?(:before_filter) # Rails 3
+        source.send(:before_filter, :set_current_view_context)
+      end
     end
   end
 end

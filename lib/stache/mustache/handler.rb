@@ -38,7 +38,7 @@ module Stache
           mustache.context.push(local_assigns)
           variables = controller.instance_variables
           variables.delete(:@template)
-          if controller.class.protected_instance_variables.defined?
+          if controller.class.respond_to?(:protected_instance_variables)
             variables -= controller.class.protected_instance_variables.to_a
           end
 

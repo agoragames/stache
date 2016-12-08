@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.name = 'stache'
   s.version = Stache::VERSION
   s.platform = Gem::Platform::RUBY
-  s.authors = ['Matt Wilson']
+  s.authors = ['Matt Wilson','Michael Bester']
   s.email = 'mhw@hypomodern.com'
   s.homepage = 'http://github.com/agoragames/stache'
   s.summary = %Q{A Rails 3.x and Rails 4.x compatible Mustache/Handlebars template handler}

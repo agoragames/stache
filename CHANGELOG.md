@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 1.2.0 (2016-12-08)
+
+* Rails 5 functionality
+* Adding controller generators
+* Adding configuration options for `template_extension` and `template_base_class`
+
 ## 1.1.1 (2015-03-19)
 
 * Bugfixes from many new contributors and some expanded test coverage! Thanks very much to all!

@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 1.2.0 (2016-12-08)
+## 1.2.0 (2017-02-03)
 
 * Rails 5 functionality
 * Adding controller generators

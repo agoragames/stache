@@ -246,4 +246,4 @@ Thanks a ton to all of the contributors, equally. This would never have grown be
 
 ## Copyright
 
-Copyright (c) 2011-2014 Matt Wilson / Agora Games. See LICENSE for details.
+Copyright (c) 2011-2017 Matt Wilson / Agora Games. See LICENSE for details.

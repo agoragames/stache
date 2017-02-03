@@ -1,6 +1,6 @@
 # stache
 
-A Rails 3.x and Rails 4.x compatible Mustache/Handlebars template handler, with support for partials and a couple extra niceties to make sharing the raw templates with client-side javascript a little easier. It's a one-stop shop for your facial-hair-inspired templates.
+A Rails 3.x, Rails 4.x, and Rails 5.x compatible Mustache/Handlebars template handler, with support for partials and a couple extra niceties to make sharing the raw templates with client-side javascript a little easier. It's a one-stop shop for your facial-hair-inspired templates.
 
 [![Build Status](https://secure.travis-ci.org/agoragames/stache.png)](http://travis-ci.org/agoragames/stache)
 
@@ -8,9 +8,9 @@ A Rails 3.x and Rails 4.x compatible Mustache/Handlebars template handler, with 
 
 I'm investigating whether or not this is something that can be/needs to be ported to handlebars.
 
-## Rails 4 Support is in 1.0.3+
+## Rails 4, Rails 5 Support is in 1.0.3+
 
-If you want Rails 4, you'll have to use 1.0.3.
+If you want Rails 4 or Rails 5 support, you'll have to use 1.0.3.
 
 ## Installation
 
@@ -230,6 +230,7 @@ So: thanks a ton to those guys.
 * [joker1007](https://github.com/joker1007) contributed a patch making the autoload paths setup more broadly compatible.
 * [kianw](https://github.com/kianw) contributed a patch making RSpec a little easier to use.
 * [MarkusHarmsen](https://github.com/MarkusHarmsen) added Mustache caching, leading to HUGE performance increases. Thanks!
+* [kimili](https://github.com/kimili) added Rails 5.x compatibility as well as some generators and configuration options.
 
 Thanks a ton to all of the contributors, equally. This would never have grown beyond a mediocre tool that rendered partials without their help!
 

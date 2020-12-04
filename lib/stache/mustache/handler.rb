@@ -82,7 +82,8 @@ module Stache
       end
 
       # In Rails 3.1+, #call takes the place of #compile
-      def self.call(template)
+      # In Rails 6, call will require an arity of 2
+      def self.call(_, template)
         new.compile(template)
       end
 
